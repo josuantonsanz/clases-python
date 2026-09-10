@@ -103,3 +103,6 @@ git add -A
 git commit -m "Actualizar capítulos"
 git push
 ```
+
+En Windows también puedes hacer doble clic en **`publicar.bat`**, que hace
+todo el proceso: genera el HTML, guarda los cambios y los sube a GitHub.
