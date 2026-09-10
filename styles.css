@@ -290,6 +290,8 @@ kbd {
 
 /* Editor de código ejecutable (Skulpt) */
 .runner {
+  /* Tamaño de fuente del código y de su salida: se mantienen iguales. */
+  --runner-fs: .9rem;
   margin: 16px 0;
   border: 1px solid #d5dbe2;
   border-radius: 10px;
@@ -341,7 +343,7 @@ kbd {
   margin: 0;
   padding: 14px 16px;
   font-family: "Cascadia Code", "Consolas", "Fira Code", ui-monospace, monospace;
-  font-size: .9rem;
+  font-size: var(--runner-fs);
   line-height: 1.55;
   tab-size: 4;
   white-space: pre;
@@ -398,8 +400,8 @@ kbd {
   border-top: 1px solid #2b3442;
   background: #10151c;
   color: #9fe8b0;
-  font-family: "Cascadia Code", "Consolas", ui-monospace, monospace;
-  font-size: .88rem;
+  font-family: "Cascadia Code", "Consolas", "Fira Code", ui-monospace, monospace;
+  font-size: var(--runner-fs);
   line-height: 1.5;
   white-space: pre-wrap;
   overflow-x: auto;
@@ -582,13 +584,12 @@ tbody tr:nth-child(even) { background: #f8f9fb; }
 .slide-view h3 { font-size: 1.2rem; margin: 20px 0 8px; }
 .slide-view p, .slide-view li { font-size: clamp(1rem, 2vw, 1.2rem); }
 .slide-view table { font-size: 1rem; }
-/* Código más grande en modo diapositivas */
+/* Código y salida más grandes en modo diapositivas (mismo tamaño) */
+.slide-view .runner { --runner-fs: clamp(1rem, 1.9vw, 1.5rem); }
 .slide-view .runner__highlight,
 .slide-view .runner__code {
-  font-size: clamp(1rem, 1.9vw, 1.5rem);
   line-height: 1.6;
 }
-.slide-view .runner__output { font-size: clamp(.9rem, 1.5vw, 1.15rem); }
 .slide-view .runner__bar,
 .slide-view .runner__btn { font-size: clamp(.85rem, 1.3vw, 1.05rem); }
 
