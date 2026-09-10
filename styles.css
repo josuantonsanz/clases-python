@@ -573,6 +573,24 @@ tbody tr:nth-child(even) { background: #f8f9fb; }
 }
 .slide-view.is-active { opacity: 1; visibility: visible; }
 
+/* Fragmentos: cada bloque aparece de uno en uno al avanzar. Se ocultan con
+   "visibility" (no con "display") para que la diapositiva no se mueva. */
+.slide-view .fragment {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity .28s ease, transform .28s ease, visibility 0s linear .28s;
+}
+.slide-view .fragment.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity .28s ease, transform .28s ease, visibility 0s linear 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .slide-view .fragment { transform: none; transition: opacity 0s, visibility 0s; }
+}
+
 .slide-view__inner {
   width: min(100%, 920px);
   max-height: 100%;
@@ -633,6 +651,17 @@ tbody tr:nth-child(even) { background: #f8f9fb; }
 }
 .slideshow__nav:hover { background: var(--azul-suave); }
 .slideshow__counter { font-size: .9rem; color: var(--texto-suave); min-width: 70px; text-align: center; font-variant-numeric: tabular-nums; }
+/* Puntos: cuántos bloques de la diapositiva actual se han mostrado */
+.slideshow__dots { display: inline-flex; align-items: center; gap: 5px; }
+.slideshow__dots[hidden] { display: none; }
+.slideshow__dots .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--borde);
+  transition: background .2s ease, transform .2s ease;
+}
+.slideshow__dots .dot.is-on { background: var(--azul); transform: scale(1.15); }
 
 /* ============================================================
    ÍNDICE GENERAL (portada + tarjetas de capítulos)
@@ -759,6 +788,9 @@ tbody tr:nth-child(even) { background: #f8f9fb; }
   .sidebar__hint {
     display: none !important;
   }
+
+  /* Por si se imprime con algún bloque aún sin revelar */
+  .fragment { opacity: 1 !important; visibility: visible !important; transform: none !important; }
 
   .layout {
     display: block;

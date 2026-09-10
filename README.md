@@ -20,6 +20,10 @@ escribes Markdown  →  node build.js  →  HTML estático listo para usar
   portada y cada apartado en su propia página, sin la URL ni la fecha del navegador.
 - **Diapositivas:** botón **▶ Diapositivas** dentro de cada capítulo.
   Navega con `←` `→` `Espacio` `Esc` o deslizando en pantalla táctil.
+  Dentro de cada diapositiva los bloques (párrafos, listas, cajas, código…)
+  van **apareciendo de uno en uno** al avanzar (también con un clic); `←`
+  deshace el último. Los puntos de la barra inferior indican cuántos bloques
+  quedan por mostrar.
 - **Código ejecutable:** cada bloque ` ```python ` se convierte en un editor con
   botón **▶ Ejecutar** y **resaltado de sintaxis tipo IDE**. El alumno puede
   modificar el código y ver el resultado en la propia página. Funciona sin

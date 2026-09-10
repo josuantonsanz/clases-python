@@ -116,9 +116,52 @@
   var btnCerrar   = document.getElementById("slides-close");
   var btnPrev     = document.getElementById("slides-prev");
   var btnNext     = document.getElementById("slides-next");
+  var puntos      = document.getElementById("slides-dots");
 
   var vistas = [];      // elementos .slide-view
   var indice = 0;
+
+  /* --- Fragmentos: los bloques de cada diapositiva se muestran
+         de uno en uno al avanzar (flecha, clic o deslizar). --- */
+
+  // Cada bloque hijo de la diapositiva es un fragmento, salvo el título.
+  function marcarFragmentos(inner) {
+    if (!inner) return;
+    Array.prototype.slice.call(inner.children).forEach(function (bloque) {
+      if (bloque.tagName === "H2") return; // el título se ve desde el principio
+      bloque.classList.add("fragment");
+    });
+  }
+
+  function fragmentosDe(vista) {
+    return vista ? Array.prototype.slice.call(vista.querySelectorAll(".fragment")) : [];
+  }
+
+  // Si el bloque recién mostrado queda por debajo del borde, baja la vista.
+  function seguirFragmento(vista, bloque) {
+    var inner = vista.querySelector(".slide-view__inner");
+    if (!inner) return;
+    var caja = inner.getBoundingClientRect();
+    var b = bloque.getBoundingClientRect();
+    if (b.bottom > caja.bottom - 10) {
+      inner.scrollTop += (b.bottom - caja.bottom) + 18;
+    }
+  }
+
+  // Puntos que indican cuántos bloques quedan por aparecer en la diapositiva.
+  function pintarPuntos(vista) {
+    if (!puntos) return;
+    var fragmentos = fragmentosDe(vista);
+    if (fragmentos.length < 2) {
+      puntos.hidden = true;
+      puntos.innerHTML = "";
+      return;
+    }
+    puntos.hidden = false;
+    puntos.innerHTML = fragmentos.map(function (f) {
+      return '<span class="dot' + (f.classList.contains("is-visible") ? " is-on" : "") + '"></span>';
+    }).join("");
+  }
 
   function crearVistas() {
     stage.innerHTML = "";
@@ -139,6 +182,7 @@
       var vista = document.createElement("div");
       vista.className = "slide-view";
       vista.innerHTML = '<div class="slide-view__inner">' + section.innerHTML + "</div>";
+      marcarFragmentos(vista.querySelector(".slide-view__inner"));
       stage.appendChild(vista);
       vistas.push(vista);
     });
@@ -154,17 +198,51 @@
     });
     contador.textContent = (indice + 1) + " / " + vistas.length;
     barra.style.width = ((indice + 1) / vistas.length * 100) + "%";
+    pintarPuntos(vistas[indice]);
   }
 
   function irA(n) {
     if (n < 0) n = 0;
     if (n > vistas.length - 1) n = vistas.length - 1;
+    if (n !== indice) {
+      // Cada diapositiva empieza a leerse desde arriba
+      var inner = vistas[n] && vistas[n].querySelector(".slide-view__inner");
+      if (inner) inner.scrollTop = 0;
+    }
     indice = n;
     actualizar();
   }
 
-  function siguiente() { irA(indice + 1); }
-  function anterior()  { irA(indice - 1); }
+  /* Avanzar: primero aparece el siguiente bloque pendiente; cuando ya
+     no queda ninguno, se pasa a la diapositiva siguiente. */
+  function siguiente() {
+    var vista = vistas[indice];
+    var pendiente = fragmentosDe(vista).filter(function (f) {
+      return !f.classList.contains("is-visible");
+    })[0];
+    if (pendiente) {
+      pendiente.classList.add("is-visible");
+      seguirFragmento(vista, pendiente);
+      actualizar();
+      return;
+    }
+    irA(indice + 1);
+  }
+
+  /* Retroceder: primero se esconde el último bloque mostrado; cuando no
+     hay ninguno visible, se vuelve a la diapositiva anterior. */
+  function anterior() {
+    var vista = vistas[indice];
+    var visibles = fragmentosDe(vista).filter(function (f) {
+      return f.classList.contains("is-visible");
+    });
+    if (visibles.length) {
+      visibles[visibles.length - 1].classList.remove("is-visible");
+      actualizar();
+      return;
+    }
+    irA(indice - 1);
+  }
 
   function abrir() {
     crearVistas();
@@ -177,11 +255,18 @@
     document.body.style.overflow = "";
   }
 
-  /* Eventos de botones */
+  /* Eventos de botones. Se quita el foco al pulsarlos para que después la
+     barra espaciadora y las flechas sigan moviendo las diapositivas. */
+  function alPulsar(boton, accion) {
+    boton.addEventListener("click", function () {
+      accion();
+      boton.blur();
+    });
+  }
   btnSlides.addEventListener("click", abrir);
   btnCerrar.addEventListener("click", cerrar);
-  btnNext.addEventListener("click", siguiente);
-  btnPrev.addEventListener("click", anterior);
+  alPulsar(btnNext, siguiente);
+  alPulsar(btnPrev, anterior);
 
   /* Teclado: ← → espacio y Esc */
   document.addEventListener("keydown", function (e) {
@@ -190,7 +275,7 @@
     // Si se está escribiendo en un editor de código (o un campo), el teclado
     // no debe cambiar de diapositiva (salvo Esc, que sigue cerrando).
     var enfocado = e.target;
-    var esCampo = enfocado && (enfocado.tagName === "TEXTAREA" || enfocado.tagName === "INPUT");
+    var esCampo = enfocado && (enfocado.tagName === "TEXTAREA" || enfocado.tagName === "INPUT" || enfocado.tagName === "BUTTON");
     if (esCampo && e.key !== "Escape") return;
 
     switch (e.key) {
@@ -233,6 +318,16 @@
       dx < 0 ? siguiente() : anterior();
     }
   }, { passive: true });
+
+  /* Un clic (o toque) en cualquier punto de la diapositiva también avanza.
+     Se ignora si el clic cae sobre algo interactivo —botones, enlaces,
+     editores de código— o si se está seleccionando texto. */
+  stage.addEventListener("click", function (e) {
+    if (e.target.closest && e.target.closest("a, button, textarea, input, select, label, .runner")) return;
+    var seleccion = window.getSelection();
+    if (seleccion && String(seleccion).trim()) return;
+    siguiente();
+  });
 
   /* ----------------------------------------------------------
      5) BLOQUES DE CÓDIGO EJECUTABLES (Skulpt)
@@ -454,6 +549,7 @@
     if (!boton) return;
     var runner = boton.closest(".runner");
     if (!runner) return;
+    boton.blur(); // así Espacio/Flechas siguen controlando las diapositivas
 
     if (boton.classList.contains("runner__btn--run")) {
       ejecutarRunner(runner);

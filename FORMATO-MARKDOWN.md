@@ -13,6 +13,9 @@ diapositivas ya incluidos.
   (no en el `.md`).
 - Dentro del `.md`, cada apartado empieza con `## Título del apartado`.
 - Cada `##` se convierte en una **sección** y, en modo diapositivas, en una **diapositiva**.
+- Dentro de una diapositiva, cada **bloque** (párrafo, lista, tabla, caja `::: `,
+  bloque de código…) aparece **de uno en uno** al avanzar. Así puedes explicar
+  la diapositiva paso a paso sin cortarla en trozos.
 
 Ejemplo mínimo (`capitulos/06-ejemplo.md`):
 
@@ -213,6 +216,14 @@ Materias disponibles en `lista.json`:
 
 ## 6. Trucos
 
+- **Modo diapositivas paso a paso:** al pulsar `→`, `Espacio`, hacer clic o
+  deslizar, aparece el siguiente bloque de la diapositiva. Solo cuando ya se
+  han mostrado todos se pasa a la siguiente. `←` deshace el último bloque y,
+  si no queda ninguno, vuelve a la diapositiva anterior. Los puntos junto al
+  contador indican cuántos bloques quedan por aparecer.
+  - El **título** `##` se ve siempre desde el principio.
+  - Si un apartado tiene muchos bloques y prefieres verlo entero de golpe,
+    basta con **partirlo en dos `##`** o reducir el número de párrafos.
 - Para **imágenes**, usa HTML directo: `<img src="imagen.jpg" alt="...">` y
   guarda la imagen junto al capítulo.
 - Para un **salto de página** forzado al imprimir, usa:
