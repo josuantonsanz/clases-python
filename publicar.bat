@@ -57,7 +57,7 @@ if errorlevel 1 (
 echo.
 echo ============================================
 echo  Listo. Web actualizada en:
-echo  https://josuantonsanz.github.io/clases-python/
+echo  https://clases-python.glosasdeguardia.es/
 echo  Puede tardar un minuto en verse. Recarga con Ctrl+F5.
 echo ============================================
 echo.

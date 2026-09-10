@@ -32,6 +32,7 @@ escribes Markdown  →  node build.js  →  HTML estático listo para usar
 |------------------------|----------------------------------------------------|
 | `capitulos/*.md`       | **Contenido** de cada capítulo (Markdown). Se edita. |
 | `capitulos/lista.json` | Títulos, materias y descripciones de los capítulos. |
+| `CNAME`                | Dominio personalizado de GitHub Pages.             |
 | `plantilla.html`       | Plantilla que da forma a cada capítulo.            |
 | `build.js`             | Conversor Markdown → HTML.                         |
 | `construir.bat`        | Ejecuta el build con doble clic (Windows).         |
@@ -92,9 +93,10 @@ En la parte superior de `styles.css`, dentro de `:root`, están las variables
 
 Este tema se publica como sitio estático en:
 
-**https://josuantonsanz.github.io/clases-python/**
+**https://clases-python.glosasdeguardia.es/**
 
-GitHub Pages sirve la rama `main` desde la raíz del repositorio. Para
+El dominio personalizado se declara en el archivo `CNAME` y está forzado a
+HTTPS. GitHub Pages sirve la rama `main` desde la raíz del repositorio. Para
 actualizar la web después de editar los capítulos:
 
 ```bash
