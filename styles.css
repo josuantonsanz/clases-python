@@ -672,7 +672,22 @@ tbody tr:nth-child(even) { background: #f8f9fb; }
   border-color: var(--azul);
   box-shadow: 0 8px 24px rgba(20, 30, 50, .12);
 }
-.chapter-card h2 { margin: 0; font-size: 1.2rem; color: var(--azul); }
+.chapter-card h2 { display: flex; align-items: center; margin: 0; font-size: 1.2rem; color: var(--azul); }
+.chapter-card__num {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7em;
+  height: 1.7em;
+  margin-right: 10px;
+  border-radius: 50%;
+  background: var(--azul-suave);
+  color: var(--azul);
+  font-size: .8em;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
 .chapter-card p { margin: 0; font-size: .92rem; color: var(--texto-suave); }
 .chapter-card .tag { align-self: flex-start; }
 
@@ -796,6 +811,7 @@ tbody tr:nth-child(even) { background: #f8f9fb; }
 
   /* Colores de cajas en escala de grises / claros */
   .tag { color: #000; background: #eee !important; border: 1px solid #999; }
+  .chapter-card__num { background: #eee; color: #000; border: 1px solid #999; }
   .math { background: #f2f2f2; }
   .formula { background: #f2f2f2; border: 1px solid #999; color: #000; }
   .slide pre { background: #f4f4f4; color: #000; border: 1px solid #bbb; }

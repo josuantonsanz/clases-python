@@ -207,13 +207,13 @@ function renderarCapitulo(md, cap, serie, num) {
 
 /* Genera la página índice general */
 function renderarIndex(lista) {
-  const tarjetas = lista.capitulos.map(function (cap) {
+  const tarjetas = lista.capitulos.map(function (cap, i) {
     const mat = MATERIAS[cap.materia] || { label: cap.materia, cls: "tag--mat" };
     const href = cap.archivo.replace(/\.md$/, ".html");
     return [
       '<a class="chapter-card" href="' + href + '">',
       '  <span class="tag ' + mat.cls + '">' + mat.label + "</span>",
-      "  <h2>" + escaparHTML(cap.titulo) + "</h2>",
+      '  <h2><span class="chapter-card__num">' + (i + 1) + "</span>" + escaparHTML(cap.titulo) + "</h2>",
       "  <p>" + escaparHTML(cap.descripcion || "") + "</p>",
       "</a>",
     ].join("\n");
