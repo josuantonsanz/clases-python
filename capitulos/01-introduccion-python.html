@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introducción a Python · Programación en Python</title>
+  <meta name="description" content="Introducción a Python — Programación en Python">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <!-- ======================= BARRA SUPERIOR ======================= -->
+  <header class="topbar">
+    <div class="topbar__title">
+      <button class="btn btn--ghost topbar__menu" id="btn-menu" aria-label="Abrir índice">☰</button>
+      <span class="topbar__brand">Programación en Python</span>
+    </div>
+    <div class="topbar__actions">
+      <a class="btn btn--outline" href="../index.html" title="Volver al índice general">⌂ <span class="btn__label">Índice</span></a>
+      <button class="btn btn--outline" id="btn-print" title="Imprimir o guardar como PDF (Ctrl+P)">
+        🖨️ <span class="btn__label">Imprimir / PDF</span>
+      </button>
+      <button class="btn btn--primary" id="btn-slides" title="Ver el contenido como diapositivas">
+        ▶ <span class="btn__label">Diapositivas</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- ======================= ÍNDICE LATERAL ======================= -->
+    <nav class="sidebar" id="sidebar" aria-label="Índice del capítulo">
+      <p class="sidebar__title">Índice del capítulo</p>
+      <ol class="toc" id="toc"><!-- se genera con JS --></ol>
+      <p class="sidebar__hint">Pulsa <kbd>Ctrl</kbd>+<kbd>P</kbd> para imprimir / guardar como PDF.</p>
+    </nav>
+
+    <!-- ======================= CONTENIDO ======================= -->
+    <main class="content" id="content">
+
+      <header class="cover" id="portada">
+  <p class="cover__kicker">Programación en Python · Capítulo 1</p>
+  <h1 class="cover__title">Introducción a Python</h1>
+  <p class="cover__subtitle"><span class="tag tag--py">Python</span></p>
+  <div class="cover__meta"><span>Curso 2026 – 2027</span><span>Programación</span></div>
+</header>
+
+      <section class="slide" data-materia="python">
+  <h2>Un poco de historia</h2>
+<p>Ahora que ya sabemos <strong>por qué</strong> vamos a aprender a programar y por qué usaremos Python, vamos a profundizar un poco más en qué es exactamente este lenguaje y cómo funciona por dentro.</p>
+<p>Python no es un lenguaje nuevo; de hecho, tiene una historia bastante interesante. Fue creado a finales de los años 80 por un programador holandés llamado <strong>Guido van Rossum</strong> en el Centro para las Matemáticas y la Informática de los Países Bajos.</p>
+<p>Curiosamente, el nombre no tiene nada que ver con las serpientes. Van Rossum era un gran fan del grupo de cómicos británicos <strong>Monty Python</strong>, y de ahí viene el nombre.</p>
+
+<div class="box box--dato">
+<p class="box__title">El origen del nombre</p>
+<p>Python no se llama así por la serpiente, sino por los <strong>Monty Python</strong>, el grupo de humoristas británicos favorito de su creador.</p>
+
+</div>
+<p>En los 90, van Rossum continuó su trabajo en Estados Unidos, donde lanzó la iniciativa <strong>Computer Programming for Everybody (CP4E)</strong>, o «Programación para todo el mundo». Su objetivo era hacer la programación más accesible, con una sintaxis limpia y fácil de leer. Esta filosofía sigue siendo hoy una de sus mayores fortalezas.</p>
+<p>Desde el año 2001, Python es gestionado por la <strong>Python Software Foundation (PSF)</strong>, una organización sin ánimo de lucro que garantiza que el lenguaje siga siendo libre, abierto y desarrollado por su comunidad.</p>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>¿Qué es un lenguaje?</h2>
+<p>Para empezar, es importante aclarar tres términos que a menudo se confunden: <strong>lenguaje</strong>, <strong>código</strong> y <strong>programa</strong>.</p>
+<ul>
+<li>Un <strong>lenguaje de programación</strong> es un conjunto de reglas, símbolos y palabras clave que nos permiten comunicarnos con un ordenador y darle instrucciones. Es como el castellano o el inglés: tiene una gramática (sintaxis) y un vocabulario que debemos respetar. Python es uno de estos lenguajes.</li>
+<li>El <strong>código</strong> (o código fuente) es el texto que escribimos siguiendo las reglas de un lenguaje de programación. Son las «frases» y «párrafos» que creamos usando el vocabulario y la gramática del lenguaje.</li>
+<li>Un <strong>programa</strong> es el conjunto de código que, al ser ejecutado por el ordenador, realiza una tarea específica. Generalmente, cuando hablamos de un «programa», nos referimos a ese proceso de ejecución, ya sea de un archivo que se compila y luego se ejecuta, o de un script que se va interpretando línea a línea.</li>
+</ul>
+<p>Uniendo los tres términos, decimos que usamos un <strong>lenguaje</strong> para escribir <strong>código</strong>, y la ejecución de ese código es lo que llamamos un <strong>programa</strong>.</p>
+
+<div class="box box--resumen">
+<p class="box__title">Resumen</p>
+<ul>
+<li><strong>Lenguaje</strong>: las reglas, símbolos y palabras clave para dar órdenes al ordenador.</li>
+<li><strong>Código</strong>: el texto que escribimos siguiendo esas reglas.</li>
+<li><strong>Programa</strong>: el código en ejecución realizando una tarea.</li>
+</ul>
+
+</div>
+</section>
+<section class="slide" data-materia="python">
+  <h2>Distintos niveles de lenguaje</h2>
+<p>No todos los lenguajes de programación hablan al ordenador de la misma manera. Podemos clasificarlos por su <strong>nivel de abstracción</strong>, es decir, lo lejos o cerca que están del lenguaje que entiende el hardware.</p>
+<h3>Lenguajes de alto nivel</h3>
+<p>Son los que están más cerca del lenguaje humano. Utilizan palabras que nos resultan fáciles de entender (como <code>if</code>, <code>for</code> o <code>print</code>). Son más sencillos de aprender y nos permiten escribir programas más rápidamente. Python es un lenguaje de alto nivel, al igual que Java, JavaScript o PHP.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code># Ejemplo de una suma en Python (alto nivel)
+resultado = 5 + 3
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable"># Ejemplo de una suma en Python (alto nivel)
+resultado = 5 + 3
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Lenguajes de bajo nivel (ensamblador)</h3>
+<p>Están mucho más cerca del «idioma» de la máquina. Sus instrucciones se corresponden directamente con operaciones del procesador. Son muy rápidos, pero también mucho más difíciles de escribir. El ejemplo más común es el lenguaje <strong>ensamblador</strong> (Assembly).</p>
+<pre><code class="language-assembly">; La misma suma en lenguaje ensamblador (bajo nivel)
+mov eax, 5            ; Mueve el valor 5 al registro &#39;eax&#39;
+mov ebx, 3            ; Mueve el valor 3 al registro &#39;ebx&#39;
+add eax, ebx          ; Suma ebx a eax y guarda el resultado en eax
+mov [resultado], eax  ; Mueve el resultado desde el registro a la memoria
+</code></pre>
+<h3>Código máquina</h3>
+<p>Este es el nivel más bajo que existe. Es el único lenguaje que el procesador de un ordenador entiende de verdad y está compuesto exclusivamente por unos y ceros (código binario). El código ensamblador de arriba es una representación legible para nosotros, pero la máquina en realidad leería algo como <code>10111000 00000101...</code>.</p>
+<p>Todo código, sin importar el lenguaje, debe ser traducido a <strong>código máquina</strong> para que el ordenador pueda ejecutarlo.</p>
+<table>
+<thead>
+<tr>
+<th>Nivel</th>
+<th>Qué es</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Alto nivel</strong></td>
+<td>Cerca del lenguaje humano</td>
+<td>Python, Java, JavaScript, PHP</td>
+</tr>
+<tr>
+<td><strong>Bajo nivel</strong></td>
+<td>Instrucciones del procesador</td>
+<td>Ensamblador (Assembly)</td>
+</tr>
+<tr>
+<td><strong>Código máquina</strong></td>
+<td>Unos y ceros (binario)</td>
+<td><code>10111000 00000101</code></td>
+</tr>
+</tbody></table>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Lenguajes compilados</h2>
+<p>Esa «traducción» de nuestro código a código máquina se puede hacer de dos maneras principales. Esto da lugar a dos tipos de lenguajes.</p>
+<p>Un lenguaje compilado necesita un programa especial llamado <strong>compilador</strong>. El compilador coge todo nuestro código fuente y lo traduce de una sola vez a código máquina, generando un archivo nuevo e independiente que se puede ejecutar (como un <code>.exe</code> en Windows).</p>
+<ul>
+<li><strong>Ventajas</strong>: la ejecución es muy rápida, porque toda la traducción se ha hecho antes.</li>
+<li><strong>Desventajas</strong>: si cambias una sola línea de código, tienes que volver a compilar todo el programa. Además, el archivo ejecutable solo funciona en un sistema operativo específico.</li>
+<li><strong>Ejemplos</strong>: C, C++.</li>
+</ul>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Lenguajes interpretados</h2>
+<p>Un lenguaje interpretado utiliza un programa llamado <strong>intérprete</strong>. En lugar de traducir todo el código de golpe, el intérprete lee el código fuente línea por línea y ejecuta cada instrucción sobre la marcha.</p>
+<ul>
+<li><strong>Ventajas</strong>: son muy flexibles y portátiles. El mismo archivo de código puede funcionar en Windows, Linux o Mac, siempre que tengan el intérprete instalado. Son ideales para el scripting y el desarrollo rápido.</li>
+<li><strong>Desventajas</strong>: la ejecución es más lenta, porque la traducción se hace cada vez que se ejecuta el programa.</li>
+<li><strong>Ejemplos</strong>: Python, JavaScript, PHP.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Compilado</th>
+<th>Interpretado</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Traducción</strong></td>
+<td>Todo el código de golpe</td>
+<td>Línea a línea</td>
+</tr>
+<tr>
+<td><strong>Velocidad</strong></td>
+<td>Más rápida</td>
+<td>Más lenta</td>
+</tr>
+<tr>
+<td><strong>Portabilidad</strong></td>
+<td>Un ejecutable por sistema</td>
+<td>Mismo archivo en todos</td>
+</tr>
+<tr>
+<td><strong>Ejemplos</strong></td>
+<td>C, C++</td>
+<td>Python, JavaScript, PHP</td>
+</tr>
+</tbody></table>
+
+<div class="box box--resumen">
+<p class="box__title">Resumen</p>
+<p>En principio, <strong>Python es un lenguaje interpretado</strong>. Esto es lo que nos permite ejecutar programas tan fácilmente y probar código de forma interactiva.</p>
+<p>Aunque internamente Python realiza un paso intermedio (compila el código a un formato llamado <strong>bytecode</strong> que luego interpreta), a efectos prácticos se comporta como un lenguaje interpretado, dándonos toda su flexibilidad.</p>
+
+</div>
+</section>
+
+
+      <footer class="page-footer">
+        <p><a href="../index.html">← Volver al índice</a> · Programación en Python · Material de aula</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- ======================= VISOR DE DIAPOSITIVAS ======================= -->
+  <div class="slideshow" id="slideshow" hidden>
+    <div class="slideshow__progress"><div class="slideshow__bar" id="slides-bar"></div></div>
+    <button class="slideshow__close" id="slides-close" title="Salir (Esc)">✕</button>
+    <div class="slideshow__stage" id="slides-stage"></div>
+    <div class="slideshow__controls">
+      <button class="slideshow__nav" id="slides-prev" title="Anterior (←)">←</button>
+      <span class="slideshow__counter" id="slides-counter">1 / 1</span>
+      <button class="slideshow__nav" id="slides-next" title="Siguiente (→)">→</button>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

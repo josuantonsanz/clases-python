@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primeros comandos · Programación en Python</title>
+  <meta name="description" content="Primeros comandos — Programación en Python">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <!-- ======================= BARRA SUPERIOR ======================= -->
+  <header class="topbar">
+    <div class="topbar__title">
+      <button class="btn btn--ghost topbar__menu" id="btn-menu" aria-label="Abrir índice">☰</button>
+      <span class="topbar__brand">Programación en Python</span>
+    </div>
+    <div class="topbar__actions">
+      <a class="btn btn--outline" href="../index.html" title="Volver al índice general">⌂ <span class="btn__label">Índice</span></a>
+      <button class="btn btn--outline" id="btn-print" title="Imprimir o guardar como PDF (Ctrl+P)">
+        🖨️ <span class="btn__label">Imprimir / PDF</span>
+      </button>
+      <button class="btn btn--primary" id="btn-slides" title="Ver el contenido como diapositivas">
+        ▶ <span class="btn__label">Diapositivas</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- ======================= ÍNDICE LATERAL ======================= -->
+    <nav class="sidebar" id="sidebar" aria-label="Índice del capítulo">
+      <p class="sidebar__title">Índice del capítulo</p>
+      <ol class="toc" id="toc"><!-- se genera con JS --></ol>
+      <p class="sidebar__hint">Pulsa <kbd>Ctrl</kbd>+<kbd>P</kbd> para imprimir / guardar como PDF.</p>
+    </nav>
+
+    <!-- ======================= CONTENIDO ======================= -->
+    <main class="content" id="content">
+
+      <header class="cover" id="portada">
+  <p class="cover__kicker">Programación en Python · Capítulo 2</p>
+  <h1 class="cover__title">Primeros comandos</h1>
+  <p class="cover__subtitle"><span class="tag tag--py">Python</span></p>
+  <div class="cover__meta"><span>Curso 2026 – 2027</span><span>Programación</span></div>
+</header>
+
+      <section class="slide" data-materia="python">
+  <h2>Comentarios</h2>
+<p>En este capítulo empezamos a escribir código de verdad. Veremos los elementos más básicos del lenguaje: comentarios, variables, tipos de datos, operadores y las funciones <code>print()</code> e <code>input()</code>.</p>
+<p>Los comentarios son líneas de texto dentro del código que Python <strong>ignora</strong> al ejecutar el programa. Sirven para que los programadores dejen notas, explicaciones o recordatorios para sí mismos o para otros que lean el código.</p>
+<p>En Python, un comentario de una sola línea comienza con el símbolo de almohadilla (<code>#</code>).</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code># Primer programa
+x = 2 + 3  # Esto suma 2 y 3
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable"># Primer programa
+x = 2 + 3  # Esto suma 2 y 3
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>En este caso, <code># Primer programa</code> y <code># Esto suma 2 y 3</code> son comentarios que explican lo que hace el código, pero no afectan a su funcionamiento.</p>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Variables y asignación</h2>
+<p>Una <strong>variable</strong> es como una caja con un nombre donde podemos guardar un valor (un número, un texto, etc.). El proceso de guardar un valor en una variable se llama <strong>asignación</strong>, y se realiza con el operador igual (<code>=</code>).</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>x = 2 + 3
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">x = 2 + 3
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<ul>
+<li><code>x</code> es el nombre de la variable.</li>
+<li><code>=</code> es el operador de asignación.</li>
+<li><code>2 + 3</code> es la operación cuyo resultado (en este caso, <code>5</code>) se guardará dentro de la variable <code>x</code>.</li>
+</ul>
+<p>Las variables pueden cambiar de valor (por eso se llaman «variables»):</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>x = 3       # Ahora x vale 3
+x = 2 + x   # Ahora x guardará el valor 5 (2 + 3)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">x = 3       # Ahora x vale 3
+x = 2 + x   # Ahora x guardará el valor 5 (2 + 3)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+<div class="box box--dato">
+<p class="box__title">Importante</p>
+<p>No confundas el operador de asignación <code>=</code> con el de comparación <code>==</code>. El primero <strong>guarda</strong> un valor en una variable; el segundo <strong>compara</strong> dos valores.</p>
+
+</div>
+</section>
+<section class="slide" data-materia="python">
+  <h2>Tipos de datos básicos</h2>
+<p>Hemos visto tres tipos de datos fundamentales.</p>
+<h3>Números enteros (<code>int</code>)</h3>
+<p>Son números completos, sin decimales.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>x = 5
+a = 10
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">x = 5
+a = 10
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Números flotantes o decimales (<code>float</code>)</h3>
+<p>Son números que tienen una parte decimal.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>division = 10 / 4  # El resultado es 2.5, que es un float
+x = float(3)       # Convierte el entero 3 al flotante 3.0
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">division = 10 / 4  # El resultado es 2.5, que es un float
+x = float(3)       # Convierte el entero 3 al flotante 3.0
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Cadenas de texto (<code>str</code> o string)</h3>
+<p>Son secuencias de caracteres (letras, números, símbolos) que se escriben entre comillas dobles (<code>&quot;</code>) o simples (<code>&#39;</code>).</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>texto = &quot;Hola, mundo&quot;
+nombre = &quot;Josu&quot;
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">texto = &quot;Hola, mundo&quot;
+nombre = &quot;Josu&quot;
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Operadores aritméticos</h2>
+<p>Son los símbolos que nos permiten realizar operaciones matemáticas básicas.</p>
+<ul>
+<li><code>+</code> : suma</li>
+<li><code>-</code> : resta</li>
+<li><code>*</code> : multiplicación</li>
+<li><code>/</code> : división (en Python 3, el resultado siempre es un <code>float</code>)</li>
+</ul>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>a = 10
+b = 5
+suma = a + b        # suma valdrá 15
+resta = a - b       # resta valdrá 5
+multi = a * b       # multi valdrá 50
+division = a / b    # division valdrá 2.0
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="6" aria-label="Código Python editable">a = 10
+b = 5
+suma = a + b        # suma valdrá 15
+resta = a - b       # resta valdrá 5
+multi = a * b       # multi valdrá 50
+division = a / b    # division valdrá 2.0
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>La función <code>print()</code> (salida de datos)</h2>
+<p>La función <code>print()</code> se utiliza para mostrar valores o texto en la pantalla. Es la forma estándar de ver el resultado de nuestro programa.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>y = 5
+print(y)  # Muestra el número 5 en la pantalla
+
+texto = &quot;Hola, mundo&quot;
+print(texto)  # Muestra el texto &quot;Hola, mundo&quot;
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="5" aria-label="Código Python editable">y = 5
+print(y)  # Muestra el número 5 en la pantalla
+
+texto = &quot;Hola, mundo&quot;
+print(texto)  # Muestra el texto &quot;Hola, mundo&quot;
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+<div class="box">
+<p class="box__title">Sobre Jupyter Notebook</p>
+<p>En un notebook, si la última línea de una celda es una variable o un valor, Jupyter lo muestra automáticamente. Sin embargo, <code>print()</code> es explícito y siempre mostrará lo que le pidas, sin importar en qué línea de la celda esté.</p>
+
+</div>
+</section>
+<section class="slide" data-materia="python">
+  <h2>Concatenación de cadenas</h2>
+<p>Cuando se usa el operador de suma (<code>+</code>) con cadenas de texto, en lugar de sumar, las <strong>une</strong> o <strong>concatena</strong>.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>texto1 = &quot;Hola&quot;
+texto2 = &quot;Josu&quot;
+saludo = texto1 + &quot; &quot; + texto2  # Une &quot;Hola&quot;, un espacio &quot; &quot; y &quot;Josu&quot;
+print(saludo)  # Muestra &quot;Hola Josu&quot;
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="4" aria-label="Código Python editable">texto1 = &quot;Hola&quot;
+texto2 = &quot;Josu&quot;
+saludo = texto1 + &quot; &quot; + texto2  # Une &quot;Hola&quot;, un espacio &quot; &quot; y &quot;Josu&quot;
+print(saludo)  # Muestra &quot;Hola Josu&quot;
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>La función <code>input()</code> (entrada de datos)</h2>
+<p>La función <code>input()</code> pausa la ejecución del programa, muestra un mensaje al usuario y espera a que este escriba algo y presione «Enter».</p>
+
+<div class="box box--dato">
+<p class="box__title">Importante</p>
+<p>Todo lo que el usuario escribe se recibe <strong>siempre</strong> como una <strong>cadena de texto (<code>str</code>)</strong>, aunque escriba números.</p>
+
+</div>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>nombre = input(&quot;Pon tu nombre: &quot;)
+print(nombre)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">nombre = input(&quot;Pon tu nombre: &quot;)
+print(nombre)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Conversión de tipos (casting)</h2>
+<p>Como <code>input()</code> siempre devuelve texto, si queremos hacer operaciones matemáticas con lo que el usuario introduce, primero debemos <strong>convertir</strong> ese texto a un tipo de dato numérico. A este proceso se le llama «casting».</p>
+<ul>
+<li><code>int(valor)</code>: convierte el <code>valor</code> a un número entero.</li>
+<li><code>float(valor)</code>: convierte el <code>valor</code> a un número flotante (con decimales).</li>
+<li><code>str(valor)</code>: convierte el <code>valor</code> a una cadena de texto.</li>
+</ul>
+<p><strong>De <code>str</code> a <code>int</code>:</strong></p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>entrada1 = input(&quot;Escribe el primer número: &quot;)  # entrada1 es &quot;10&quot; (texto)
+a = int(entrada1)                               # a es 10 (número)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">entrada1 = input(&quot;Escribe el primer número: &quot;)  # entrada1 es &quot;10&quot; (texto)
+a = int(entrada1)                               # a es 10 (número)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p><strong>De <code>int</code> a <code>str</code> para imprimir:</strong></p>
+<p>No se puede concatenar un texto con un número directamente (<code>&quot;Suma: &quot; + 15</code> daría error). Hay que convertir el número a texto primero.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>suma = 15
+print(&quot;Suma: &quot; + str(suma))  # Convierte el número 15 a texto &quot;15&quot;
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">suma = 15
+print(&quot;Suma: &quot; + str(suma))  # Convierte el número 15 a texto &quot;15&quot;
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Condicionales (<code>if</code> / <code>else</code>)</h2>
+<p>Los condicionales nos permiten que nuestro código tome decisiones y ejecute diferentes bloques de código según si una condición se cumple o no.</p>
+<ul>
+<li><code>if</code>: ejecuta el bloque de código que le sigue <strong>si</strong> la condición es verdadera.</li>
+<li><code>else</code>: ejecuta el bloque de código que le sigue <strong>si</strong> la condición del <code>if</code> es falsa.</li>
+</ul>
+<h3>Operadores de comparación</h3>
+<p>Para comprobar si dos valores son iguales se usa el doble igual (<code>==</code>). ¡No confundir con el <code>=</code> de asignación! También podemos comprobar si algo es distinto (<code>!=</code>), mayor o menor que otra cosa (<code>&gt;</code>, <code>&lt;</code>) o mayor o igual y menor o igual (<code>&gt;=</code>, <code>&lt;=</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Operador</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>==</code></td>
+<td>igual que</td>
+</tr>
+<tr>
+<td><code>!=</code></td>
+<td>distinto de</td>
+</tr>
+<tr>
+<td><code>&gt;</code></td>
+<td>mayor que</td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>menor que</td>
+</tr>
+<tr>
+<td><code>&gt;=</code></td>
+<td>mayor o igual que</td>
+</tr>
+<tr>
+<td><code>&lt;=</code></td>
+<td>menor o igual que</td>
+</tr>
+</tbody></table>
+<h3>Indentación</h3>
+<p>En Python, los bloques de código que pertenecen a un <code>if</code> o a un <code>else</code> deben estar <strong>indentados</strong> (tener un espacio o tabulación al principio). Así es como Python sabe qué código ejecutar en cada caso.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>x = float(input(&quot;Escribe un número: &quot;))  # Pide un número y lo convierte a float
+
+if x == 3:  # Comprueba si el valor de x es igual a 3
+    # Este bloque solo se ejecuta si la condición es verdadera
+    print(&quot;X es igual a 3&quot;)
+else:
+    # Este bloque solo se ejecuta si la condición es falsa
+    print(&quot;X no es 3&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="8" aria-label="Código Python editable">x = float(input(&quot;Escribe un número: &quot;))  # Pide un número y lo convierte a float
+
+if x == 3:  # Comprueba si el valor de x es igual a 3
+    # Este bloque solo se ejecuta si la condición es verdadera
+    print(&quot;X es igual a 3&quot;)
+else:
+    # Este bloque solo se ejecuta si la condición es falsa
+    print(&quot;X no es 3&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+<div class="box box--resumen">
+<p class="box__title">Resumen</p>
+<ul>
+<li>Los <strong>comentarios</strong> empiezan por <code>#</code> y Python los ignora.</li>
+<li>Una <strong>variable</strong> guarda un valor; se asigna con <code>=</code>.</li>
+<li>Tipos básicos: <code>int</code>, <code>float</code> y <code>str</code>.</li>
+<li><code>print()</code> muestra datos e <code>input()</code> los pide (siempre como texto).</li>
+<li>El <strong>casting</strong> (<code>int()</code>, <code>float()</code>, <code>str()</code>) convierte entre tipos.</li>
+<li>Los <strong>condicionales</strong> (<code>if</code> / <code>else</code>) deciden qué código se ejecuta según una condición.</li>
+</ul>
+
+</div>
+</section>
+
+
+      <footer class="page-footer">
+        <p><a href="../index.html">← Volver al índice</a> · Programación en Python · Material de aula</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- ======================= VISOR DE DIAPOSITIVAS ======================= -->
+  <div class="slideshow" id="slideshow" hidden>
+    <div class="slideshow__progress"><div class="slideshow__bar" id="slides-bar"></div></div>
+    <button class="slideshow__close" id="slides-close" title="Salir (Esc)">✕</button>
+    <div class="slideshow__stage" id="slides-stage"></div>
+    <div class="slideshow__controls">
+      <button class="slideshow__nav" id="slides-prev" title="Anterior (←)">←</button>
+      <span class="slideshow__counter" id="slides-counter">1 / 1</span>
+      <button class="slideshow__nav" id="slides-next" title="Siguiente (→)">→</button>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

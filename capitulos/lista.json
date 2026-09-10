@@ -1,0 +1,20 @@
+{
+  "serie": "Programación en Python",
+  "subtitulo": "Introducción al lenguaje y primeros comandos",
+  "etapa": "Programación",
+  "curso": "Curso 2026 – 2027",
+  "capitulos": [
+    {
+      "archivo": "capitulos/01-introduccion-python.md",
+      "titulo": "Introducción a Python",
+      "materia": "python",
+      "descripcion": "Qué es Python, su historia, los lenguajes de programación y la diferencia entre compilar e interpretar."
+    },
+    {
+      "archivo": "capitulos/02-primeros-comandos.md",
+      "titulo": "Primeros comandos",
+      "materia": "python",
+      "descripcion": "Comentarios, variables, tipos de datos, operadores, print(), input(), casting y condicionales."
+    }
+  ]
+}
