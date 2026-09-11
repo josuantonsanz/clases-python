@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terminando con lo básico · Programación en Python</title>
+  <meta name="description" content="Terminando con lo básico — Programación en Python">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <!-- ======================= BARRA SUPERIOR ======================= -->
+  <header class="topbar">
+    <div class="topbar__title">
+      <button class="btn btn--ghost topbar__menu" id="btn-menu" aria-label="Abrir índice">☰</button>
+      <span class="topbar__brand">Programación en Python</span>
+    </div>
+    <div class="topbar__actions">
+      <a class="btn btn--outline" href="../index.html" title="Volver al índice general">⌂ <span class="btn__label">Índice</span></a>
+      <button class="btn btn--outline" id="btn-print" title="Imprimir o guardar como PDF (Ctrl+P)">
+        🖨️ <span class="btn__label">Imprimir / PDF</span>
+      </button>
+      <button class="btn btn--primary" id="btn-slides" title="Ver el contenido como diapositivas">
+        ▶ <span class="btn__label">Diapositivas</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- ======================= ÍNDICE LATERAL ======================= -->
+    <nav class="sidebar" id="sidebar" aria-label="Índice del capítulo">
+      <p class="sidebar__title">Índice del capítulo</p>
+      <ol class="toc" id="toc"><!-- se genera con JS --></ol>
+      <p class="sidebar__hint">Pulsa <kbd>Ctrl</kbd>+<kbd>P</kbd> para imprimir / guardar como PDF.</p>
+    </nav>
+
+    <!-- ======================= CONTENIDO ======================= -->
+    <main class="content" id="content">
+
+      <header class="cover" id="portada">
+  <p class="cover__kicker">Programación en Python · Capítulo 3</p>
+  <h1 class="cover__title">Terminando con lo básico</h1>
+  <p class="cover__subtitle"><span class="tag tag--py">Python</span></p>
+  <div class="cover__meta"><span>Curso 2026 – 2027</span><span>Programación</span></div>
+</header>
+
+      <section class="slide" data-materia="python">
+  <h2>Variables</h2>
+<h3>Cómo nombrar las variables</h3>
+<p>En Python, las variables no se pueden llamar de cualquier modo, aunque hay mucho margen. Las normas son las siguientes:</p>
+<ol>
+<li>Solo puede ser una palabra (sin espacios en blanco).</li>
+<li>Solo puede tener letras, números y el guion bajo (<code>_</code>).</li>
+<li>No puede empezar por un número.</li>
+</ol>
+<p>Es importante que las variables tengan nombres reconocibles, que ayuden al programador a saber qué contiene la variable. Python distingue entre mayúsculas y minúsculas al escribir variables y, normalmente, siempre empiezan a escribirse en minúsculas. Si queremos poner dos o más palabras como nombre de una variable <code>podemosHacerloAsi</code> (estilo <em>camelCase</em>) o <code>podemos_hacerlo_asi</code> (estilo <em>snake_case</em>). Lo mejor es elegir uno de los estilos y usarlo siempre.</p>
+<p>Además, Python se reserva unas pocas palabras que no pueden ser nombres de variables, porque se usan en otras partes del código, son las siguientes: <code>False</code>, <code>None</code>, <code>True</code>, <code>and</code>, <code>as</code>, <code>assert</code>, <code>async</code>, <code>await</code>, <code>break</code>, <code>class</code>, <code>continue</code>, <code>def</code>, <code>del</code>, <code>elif</code>, <code>else</code>, <code>except</code>, <code>finally</code>, <code>for</code>, <code>from</code>, <code>global</code>, <code>if</code>, <code>import</code>, <code>in</code>, <code>is</code>, <code>lambda</code>, <code>nonlocal</code>, <code>not</code>, <code>or</code>, <code>pass</code>, <code>raise</code>, <code>return</code>, <code>try</code>, <code>while</code>, <code>with</code>, <code>yield</code>.</p>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Funciones internas</h2>
+<p>Python viene de serie con algunas funciones muy útiles. Ya hemos visto <code>print()</code>, <code>input()</code>, <code>str()</code>, <code>int()</code> y <code>float()</code>.</p>
+<h3>Longitud de una cadena, función <code>len()</code></h3>
+<p>La función <code>len()</code> sirve para saber cuál es la longitud de una cadena (el número de caracteres que contiene).</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>nombre = &quot;Josu&quot;
+print(len(nombre)) # Muestra 4
+
+frase = &quot;Hola mundo&quot;
+print(len(frase)) # Muestra 10 (el espacio también cuenta)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="5" aria-label="Código Python editable">nombre = &quot;Josu&quot;
+print(len(nombre)) # Muestra 4
+
+frase = &quot;Hola mundo&quot;
+print(len(frase)) # Muestra 10 (el espacio también cuenta)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Tipo de variable, función <code>type()</code></h3>
+<p>Con la función <code>type()</code> podemos conocer el tipo de una variable (si es cadena, número entero, número decimal…) y aprovechar ese dato, por ejemplo, para hacer una conversión de uno a otro.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>type(&#39;17&#39;) # Devuelve str de string (cadena)
+type(17)   # Devuelve int de integer (entero)
+type(17.0) # Devuelve float (número decimal)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="3" aria-label="Código Python editable">type(&#39;17&#39;) # Devuelve str de string (cadena)
+type(17)   # Devuelve int de integer (entero)
+type(17.0) # Devuelve float (número decimal)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Métodos de una variable, función <code>dir()</code></h3>
+<p>La función <code>dir()</code> es un poco más avanzada, pero nos da una pista de todo lo que podemos <em>hacer</em> con una variable. Nos muestra una lista de sus «métodos» (acciones que se pueden realizar sobre ella). No te preocupes por entenderlos todos, pero es útil para explorar.</p>
+<p>Por ejemplo, las cadenas de texto (<code>str</code>) tienen métodos para convertirlas a mayúsculas (<code>.upper()</code>) o minúsculas (<code>.lower()</code>).</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code># dir(mi_variable) nos daría una lista enorme de cosas
+# Pero podemos usar sus métodos directamente:
+
+saludo = &quot;Hola, ¿qué tal?&quot;
+print(saludo.upper()) # Muestra: HOLA, ¿QUÉ TAL?
+
+nombre = &quot;JOSU&quot;
+print(nombre.lower()) # Muestra: josu
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="8" aria-label="Código Python editable"># dir(mi_variable) nos daría una lista enorme de cosas
+# Pero podemos usar sus métodos directamente:
+
+saludo = &quot;Hola, ¿qué tal?&quot;
+print(saludo.upper()) # Muestra: HOLA, ¿QUÉ TAL?
+
+nombre = &quot;JOSU&quot;
+print(nombre.lower()) # Muestra: josu
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Operadores</h2>
+<p>En Python, más allá de la suma y de la resta, hay muchos operadores.</p>
+<h3>Operadores aritméticos</h3>
+<p>Estos son los operadores para cuestiones «matemáticas».</p>
+<table>
+<thead>
+<tr>
+<th align="left">Operador</th>
+<th align="left">Operación</th>
+<th align="left">Ejemplo</th>
+<th align="left">Evalúa a</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>+</code></td>
+<td align="left">Suma</td>
+<td align="left"><code>2 + 3</code></td>
+<td align="left">5</td>
+</tr>
+<tr>
+<td align="left"><code>-</code></td>
+<td align="left">Resta</td>
+<td align="left"><code>3 - 2</code></td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left"><code>*</code></td>
+<td align="left">Multiplicación</td>
+<td align="left"><code>2 * 3</code></td>
+<td align="left">6</td>
+</tr>
+<tr>
+<td align="left"><code>/</code></td>
+<td align="left">División</td>
+<td align="left"><code>7 / 2</code></td>
+<td align="left">3.5</td>
+</tr>
+<tr>
+<td align="left"><code>**</code></td>
+<td align="left">Potencia</td>
+<td align="left"><code>3 ** 2</code></td>
+<td align="left">9</td>
+</tr>
+<tr>
+<td align="left"><code>//</code></td>
+<td align="left">División entera</td>
+<td align="left"><code>7 // 2</code></td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left"><code>%</code></td>
+<td align="left">Resto (Módulo)</td>
+<td align="left"><code>7 % 2</code></td>
+<td align="left">1</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Tip: Operadores de asignación compuestos</strong>
+A menudo queremos modificar el valor de una variable basándonos en su valor actual (ej: <code>x = x + 1</code>). Python tiene un atajo para esto:</p>
+<ul>
+<li><code>x += 3</code> es lo mismo que <code>x = x + 3</code></li>
+<li><code>x -= 2</code> es lo mismo que <code>x = x - 2</code></li>
+<li><code>x *= 5</code> es lo mismo que <code>x = x * 5</code></li>
+<li><code>x /= 4</code> es lo mismo que <code>x = x / 4</code></li>
+</ul>
+</blockquote>
+<h3>Operadores lógicos y de comparación</h3>
+<p>Estos operadores no devuelven un número, sino un valor booleano: <code>True</code> (verdadero) o <code>False</code> (falso). Son la base para tomar decisiones en el código con los condicionales <code>if</code>.</p>
+<p><strong>Operadores de Comparación</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">Operador</th>
+<th align="left">Significado</th>
+<th align="left">Ejemplo</th>
+<th align="left">Evalúa a</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">==</td>
+<td align="left">Igual a</td>
+<td align="left"><code>5 == 5</code></td>
+<td align="left"><code>True</code></td>
+</tr>
+<tr>
+<td align="left"><code>!=</code></td>
+<td align="left">No igual a (distinto)</td>
+<td align="left"><code>5 != 3</code></td>
+<td align="left"><code>True</code></td>
+</tr>
+<tr>
+<td align="left"><code>&lt;</code></td>
+<td align="left">Menor que</td>
+<td align="left"><code>3 &lt; 5</code></td>
+<td align="left"><code>True</code></td>
+</tr>
+<tr>
+<td align="left"><code>&gt;</code></td>
+<td align="left">Mayor que</td>
+<td align="left"><code>3 &gt; 5</code></td>
+<td align="left"><code>False</code></td>
+</tr>
+<tr>
+<td align="left"><code>&lt;=</code></td>
+<td align="left">Menor o igual que</td>
+<td align="left"><code>5 &lt;= 5</code></td>
+<td align="left"><code>True</code></td>
+</tr>
+<tr>
+<td align="left"><code>&gt;=</code></td>
+<td align="left">Mayor o igual que</td>
+<td align="left"><code>5 &gt;= 6</code></td>
+<td align="left"><code>False</code></td>
+</tr>
+</tbody></table>
+<p><strong>Operadores Lógicos</strong></p>
+<p>Nos permiten combinar varias condiciones.</p>
+<ul>
+<li><strong><code>and</code> (y)</strong>: Devuelve <code>True</code> solo si <strong>ambas</strong> condiciones son verdaderas.<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>edad = 25
+tiene_entrada = True
+# ¿Puede pasar al concierto?
+puede_pasar = edad &gt;= 18 and tiene_entrada == True
+print(puede_pasar) # Muestra True
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="5" aria-label="Código Python editable">edad = 25
+tiene_entrada = True
+# ¿Puede pasar al concierto?
+puede_pasar = edad &gt;= 18 and tiene_entrada == True
+print(puede_pasar) # Muestra True
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+<li><strong><code>or</code> (o)</strong>: Devuelve <code>True</code> si <strong>al menos una</strong> de las condiciones es verdadera.<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>es_fin_de_semana = True
+esta_de_vacaciones = False
+# ¿Puede dormir hasta tarde?
+puede_dormir = es_fin_de_semana or esta_de_vacaciones
+print(puede_dormir) # Muestra True
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="5" aria-label="Código Python editable">es_fin_de_semana = True
+esta_de_vacaciones = False
+# ¿Puede dormir hasta tarde?
+puede_dormir = es_fin_de_semana or esta_de_vacaciones
+print(puede_dormir) # Muestra True
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+<li><strong><code>not</code> (no)</strong>: Invierte el resultado. Lo que era <code>True</code> se vuelve <code>False</code>, y viceversa.<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>llueve = False
+print(not llueve) # Muestra True
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">llueve = False
+print(not llueve) # Muestra True
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+</ul>
+
+</section>
+
+
+      <footer class="page-footer">
+        <p><a href="../index.html">← Volver al índice</a> · Programación en Python · Material de aula</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- ======================= VISOR DE DIAPOSITIVAS ======================= -->
+  <div class="slideshow" id="slideshow" hidden>
+    <div class="slideshow__progress"><div class="slideshow__bar" id="slides-bar"></div></div>
+    <button class="slideshow__close" id="slides-close" title="Salir (Esc)">✕</button>
+    <div class="slideshow__stage" id="slides-stage"></div>
+    <div class="slideshow__controls">
+      <button class="slideshow__nav" id="slides-prev" title="Anterior (←)">←</button>
+      <span class="slideshow__dots" id="slides-dots" hidden></span>
+      <span class="slideshow__counter" id="slides-counter">1 / 1</span>
+      <button class="slideshow__nav" id="slides-next" title="Siguiente (→)">→</button>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

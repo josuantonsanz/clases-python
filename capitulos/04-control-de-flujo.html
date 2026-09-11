@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control de flujo · Programación en Python</title>
+  <meta name="description" content="Control de flujo — Programación en Python">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <!-- ======================= BARRA SUPERIOR ======================= -->
+  <header class="topbar">
+    <div class="topbar__title">
+      <button class="btn btn--ghost topbar__menu" id="btn-menu" aria-label="Abrir índice">☰</button>
+      <span class="topbar__brand">Programación en Python</span>
+    </div>
+    <div class="topbar__actions">
+      <a class="btn btn--outline" href="../index.html" title="Volver al índice general">⌂ <span class="btn__label">Índice</span></a>
+      <button class="btn btn--outline" id="btn-print" title="Imprimir o guardar como PDF (Ctrl+P)">
+        🖨️ <span class="btn__label">Imprimir / PDF</span>
+      </button>
+      <button class="btn btn--primary" id="btn-slides" title="Ver el contenido como diapositivas">
+        ▶ <span class="btn__label">Diapositivas</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- ======================= ÍNDICE LATERAL ======================= -->
+    <nav class="sidebar" id="sidebar" aria-label="Índice del capítulo">
+      <p class="sidebar__title">Índice del capítulo</p>
+      <ol class="toc" id="toc"><!-- se genera con JS --></ol>
+      <p class="sidebar__hint">Pulsa <kbd>Ctrl</kbd>+<kbd>P</kbd> para imprimir / guardar como PDF.</p>
+    </nav>
+
+    <!-- ======================= CONTENIDO ======================= -->
+    <main class="content" id="content">
+
+      <header class="cover" id="portada">
+  <p class="cover__kicker">Programación en Python · Capítulo 4</p>
+  <h1 class="cover__title">Control de flujo</h1>
+  <p class="cover__subtitle"><span class="tag tag--py">Python</span></p>
+  <div class="cover__meta"><span>Curso 2026 – 2027</span><span>Programación</span></div>
+</header>
+
+      <section class="slide" data-materia="python">
+  <h2>Condicionales: <code>if</code>, <code>elif</code> y <code>else</code></h2>
+<p>Hasta ahora, nuestros programas se ejecutan línea por línea, de arriba a abajo. Las estructuras de control de flujo nos permiten cambiar ese orden, tomando decisiones (<code>if</code>) o repitiendo acciones (<code>while</code>). Más adelante veremos una tercera, <code>for</code>.</p>
+<p>Ya vimos el <code>if</code>/<code>else</code> básico. Pero ¿qué pasa si tenemos más de dos posibilidades? Para eso usamos <code>elif</code> (una contracción de «else if»).</p>
+<p>Python evalúa las condiciones en orden:</p>
+<ol>
+<li>Comprueba la condición del <code>if</code>. Si es <code>True</code>, ejecuta su bloque y salta todo lo demás.</li>
+<li>Si el <code>if</code> es <code>False</code>, comprueba la condición del primer <code>elif</code>. Si es <code>True</code>, ejecuta su bloque y salta el resto.</li>
+<li>Así sucesivamente con todos los <code>elif</code>.</li>
+<li>Si ninguna de las condiciones anteriores es <code>True</code>, ejecuta el bloque del <code>else</code>.</li>
+</ol>
+<p><strong>Ejemplo práctico:</strong></p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>nota = float(input(&quot;Introduce tu nota (0-10): &quot;))
+
+if nota &gt;= 9:
+  print(&quot;¡Sobresaliente!&quot;)
+elif nota &gt;= 7:
+  print(&quot;Notable.&quot;)
+elif nota &gt;= 5:
+  print(&quot;Aprobado.&quot;)
+else:
+  print(&quot;Suspendido.&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="10" aria-label="Código Python editable">nota = float(input(&quot;Introduce tu nota (0-10): &quot;))
+
+if nota &gt;= 9:
+  print(&quot;¡Sobresaliente!&quot;)
+elif nota &gt;= 7:
+  print(&quot;Notable.&quot;)
+elif nota &gt;= 5:
+  print(&quot;Aprobado.&quot;)
+else:
+  print(&quot;Suspendido.&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<blockquote>
+<p><strong>La palabra <code>pass</code></strong>
+A veces, al diseñar el código, sabemos que necesitaremos un <code>if</code>, pero aún no sabemos qué código poner dentro. Si dejamos el bloque vacío, Python dará un error. Para evitarlo, usamos la palabra <code>pass</code>, que simplemente significa «no hacer nada».</p>
+</blockquote>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>if nota &lt; 5:
+  # TODO: Enviar un email de aviso a los padres
+  pass # El programa funciona sin error
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="3" aria-label="Código Python editable">if nota &lt; 5:
+  # TODO: Enviar un email de aviso a los padres
+  pass # El programa funciona sin error
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Mientras: <code>while</code></h2>
+<p>El bucle <code>while</code> repite un bloque de código <strong>mientras</strong> una condición sea verdadera. Es como un <code>if</code> que se ejecuta una y otra vez.</p>
+<p>¡Cuidado! Si la condición nunca se vuelve falsa, el programa entrará en un <strong>bucle infinito</strong> y se quedará «colgado».</p>
+<p><strong>Ejemplo 1: Un contador hacia atrás</strong></p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>contador = 5
+while contador &gt; 0:
+  print(contador)
+  contador -= 1 # ¡Muy importante! Modificamos la variable para que la condición eventualmente sea falsa.
+
+print(&quot;¡Despegue!&quot;)
+# Salida:
+# 5
+# 4
+# 3
+# 2
+# 1
+# ¡Despegue!
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="13" aria-label="Código Python editable">contador = 5
+while contador &gt; 0:
+  print(contador)
+  contador -= 1 # ¡Muy importante! Modificamos la variable para que la condición eventualmente sea falsa.
+
+print(&quot;¡Despegue!&quot;)
+# Salida:
+# 5
+# 4
+# 3
+# 2
+# 1
+# ¡Despegue!
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p><strong>Ejemplo 2: Esperar una entrada específica del usuario</strong></p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>respuesta = &quot;&quot;
+while respuesta != &quot;salir&quot;: # Mientras la respuesta sea distinta de &#39;salir&#39;...
+  respuesta = input(&quot;Escribe &#39;salir&#39; para terminar: &quot;)
+  print(&quot;Has escrito: &quot; + respuesta)
+
+print(&quot;¡Programa terminado!&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="6" aria-label="Código Python editable">respuesta = &quot;&quot;
+while respuesta != &quot;salir&quot;: # Mientras la respuesta sea distinta de &#39;salir&#39;...
+  respuesta = input(&quot;Escribe &#39;salir&#39; para terminar: &quot;)
+  print(&quot;Has escrito: &quot; + respuesta)
+
+print(&quot;¡Programa terminado!&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Salir del bucle: <code>break</code> y <code>continue</code></h2>
+<p>A veces necesitamos más control sobre el bucle que simplemente la condición del <code>while</code>.</p>
+<ul>
+<li><code>break</code>: Interrumpe y sale del bucle <strong>inmediatamente</strong>, sin importar si la condición del <code>while</code> sigue siendo verdadera.</li>
+<li><code>continue</code>: Interrumpe la iteración <strong>actual</strong> y salta directamente al inicio de la siguiente, para volver a comprobar la condición.</li>
+</ul>
+<p><strong>Ejemplo de <code>break</code>:</strong></p>
+<p>Un bucle <code>while True:</code> por sí solo sería infinito. Pero podemos usar <code>break</code> para salir cuando se cumpla una condición interna.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>while True: # Bucle infinito a propósito
+    nombre = input(&quot;Adivina mi nombre: &quot;)
+    if nombre == &quot;Josu&quot;:
+        print(&quot;¡Correcto!&quot;)
+        break # Salimos del bucle
+    else:
+        print(&quot;Inténtalo de nuevo.&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="7" aria-label="Código Python editable">while True: # Bucle infinito a propósito
+    nombre = input(&quot;Adivina mi nombre: &quot;)
+    if nombre == &quot;Josu&quot;:
+        print(&quot;¡Correcto!&quot;)
+        break # Salimos del bucle
+    else:
+        print(&quot;Inténtalo de nuevo.&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p><strong>Ejemplo de <code>continue</code>:</strong></p>
+<p>Vamos a imprimir solo los números impares. Si el número es par, nos saltamos el <code>print</code> de esa iteración con <code>continue</code>.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>numero = 0
+while numero &lt; 10:
+    numero += 1
+    if numero % 2 == 0: # Si el resto de dividir entre 2 es 0, es par
+        continue # Saltamos a la siguiente iteración, ignorando el print
+
+    print(numero) # Solo se ejecuta si el número es impar
+# Salida: 1, 3, 5, 7, 9
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="8" aria-label="Código Python editable">numero = 0
+while numero &lt; 10:
+    numero += 1
+    if numero % 2 == 0: # Si el resto de dividir entre 2 es 0, es par
+        continue # Saltamos a la siguiente iteración, ignorando el print
+
+    print(numero) # Solo se ejecuta si el número es impar
+# Salida: 1, 3, 5, 7, 9
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Ejercicios para practicar</h2>
+<h3>1. Adivina el número</h3>
+<ol>
+<li>Crea una variable llamada <code>numero_secreto</code> y asígnale un número entero (el que tú quieras).</li>
+<li>Crea un bucle <code>while</code> que se ejecute continuamente (<code>while True:</code>).</li>
+<li>Dentro del bucle, pide al usuario que adivine el número con <code>input()</code>.</li>
+<li>Convierte la entrada del usuario a un número entero.</li>
+<li>Comprueba si el número del usuario es:<ul>
+<li>Igual al <code>numero_secreto</code>. Si lo es, imprime «¡Has acertado!» y usa <code>break</code> para salir del bucle.</li>
+<li>Menor que el <code>numero_secreto</code>. Si lo es, imprime «El número secreto es mayor».</li>
+<li>Mayor que el <code>numero_secreto</code>. Si lo es, imprime «El número secreto es menor».</li>
+</ul>
+</li>
+</ol>
+<h3>2. Login simple (desafío)</h3>
+<ol>
+<li>Define dos variables: <code>usuario_correcto</code> y <code>contrasena_correcta</code>. Asígnales los valores que quieras.</li>
+<li>Crea un bucle <code>while</code> que pida al usuario su nombre de usuario y su contraseña.</li>
+<li>Comprueba si ambos coinciden con las variables que definiste.</li>
+<li>Si coinciden, imprime «Acceso concedido» y sal del bucle con <code>break</code>.</li>
+<li>Si no coinciden, imprime «Datos incorrectos, inténtalo de nuevo».</li>
+</ol>
+
+</section>
+
+
+      <footer class="page-footer">
+        <p><a href="../index.html">← Volver al índice</a> · Programación en Python · Material de aula</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- ======================= VISOR DE DIAPOSITIVAS ======================= -->
+  <div class="slideshow" id="slideshow" hidden>
+    <div class="slideshow__progress"><div class="slideshow__bar" id="slides-bar"></div></div>
+    <button class="slideshow__close" id="slides-close" title="Salir (Esc)">✕</button>
+    <div class="slideshow__stage" id="slides-stage"></div>
+    <div class="slideshow__controls">
+      <button class="slideshow__nav" id="slides-prev" title="Anterior (←)">←</button>
+      <span class="slideshow__dots" id="slides-dots" hidden></span>
+      <span class="slideshow__counter" id="slides-counter">1 / 1</span>
+      <button class="slideshow__nav" id="slides-next" title="Siguiente (→)">→</button>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

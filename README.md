@@ -2,7 +2,7 @@
 
 Plantilla **HTML + CSS + JS** para la asignatura de *Programación en Python*.
 
-Actualmente incluye dos capítulos: **Introducción a Python** y **Primeros comandos**.
+Actualmente incluye cinco capítulos: **Introducción a Python**, **Primeros comandos**, **Terminando con lo básico**, **Control de flujo** y **Cadenas en Python**.
 
 El contenido se escribe en **Markdown** (carpeta `capitulos/`) y un comando lo
 convierte en páginas HTML con diseño, índice lateral, impresión en PDF y modo

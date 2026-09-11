@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadenas en Python · Programación en Python</title>
+  <meta name="description" content="Cadenas en Python — Programación en Python">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <!-- ======================= BARRA SUPERIOR ======================= -->
+  <header class="topbar">
+    <div class="topbar__title">
+      <button class="btn btn--ghost topbar__menu" id="btn-menu" aria-label="Abrir índice">☰</button>
+      <span class="topbar__brand">Programación en Python</span>
+    </div>
+    <div class="topbar__actions">
+      <a class="btn btn--outline" href="../index.html" title="Volver al índice general">⌂ <span class="btn__label">Índice</span></a>
+      <button class="btn btn--outline" id="btn-print" title="Imprimir o guardar como PDF (Ctrl+P)">
+        🖨️ <span class="btn__label">Imprimir / PDF</span>
+      </button>
+      <button class="btn btn--primary" id="btn-slides" title="Ver el contenido como diapositivas">
+        ▶ <span class="btn__label">Diapositivas</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- ======================= ÍNDICE LATERAL ======================= -->
+    <nav class="sidebar" id="sidebar" aria-label="Índice del capítulo">
+      <p class="sidebar__title">Índice del capítulo</p>
+      <ol class="toc" id="toc"><!-- se genera con JS --></ol>
+      <p class="sidebar__hint">Pulsa <kbd>Ctrl</kbd>+<kbd>P</kbd> para imprimir / guardar como PDF.</p>
+    </nav>
+
+    <!-- ======================= CONTENIDO ======================= -->
+    <main class="content" id="content">
+
+      <header class="cover" id="portada">
+  <p class="cover__kicker">Programación en Python · Capítulo 5</p>
+  <h1 class="cover__title">Cadenas en Python</h1>
+  <p class="cover__subtitle"><span class="tag tag--py">Python</span></p>
+  <div class="cover__meta"><span>Curso 2026 – 2027</span><span>Programación</span></div>
+</header>
+
+      <section class="slide" data-materia="python">
+  <h2>Repaso rápido: Lo que ya sabemos de las cadenas</h2>
+<p>Recordemos lo que vimos en las clases anteriores:</p>
+<ol>
+<li><strong>Creación:</strong> Se crean con comillas simples (<code>&#39;</code>) o dobles (<code>&quot;</code>).<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>saludo = &quot;Hola, mundo&quot;
+despedida = &#39;Adiós&#39;
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">saludo = &quot;Hola, mundo&quot;
+despedida = &#39;Adiós&#39;
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+<li><strong>Concatenación:</strong> Se pueden unir (concatenar) con el operador <code>+</code>.<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>nombre = &quot;Ana&quot;
+mensaje = &quot;Hola, &quot; + nombre # Resultado: &quot;Hola, Ana&quot;
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">nombre = &quot;Ana&quot;
+mensaje = &quot;Hola, &quot; + nombre # Resultado: &quot;Hola, Ana&quot;
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+<li><strong>Repetición (*):</strong> Se pueden repetir usando el operador de multiplicación con un número entero.</li>
+</ol>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>risa = &quot;ja&quot; * 4      # Resultado: &quot;jajajaja&quot;
+separador = &quot;-&quot; * 20 # Resultado: &quot;--------------------&quot;
+print(separador)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="3" aria-label="Código Python editable">risa = &quot;ja&quot; * 4      # Resultado: &quot;jajajaja&quot;
+separador = &quot;-&quot; * 20 # Resultado: &quot;--------------------&quot;
+print(separador)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<ol start="4">
+<li><strong>Entrada y Salida:</strong> Las usamos con <code>print()</code> y siempre las obtenemos de <code>input()</code>.</li>
+<li><strong>Longitud:</strong> Podemos saber cuántos caracteres tienen con la función <code>len()</code>.<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>print(len(&quot;Python&quot;)) # Muestra 6
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">print(len(&quot;Python&quot;)) # Muestra 6
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+</ol>
+<p>Pero las cadenas son mucho más que eso. Vamos a ver todo lo que se puede hacer con ellas.</p>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Las cadenas son secuencias: Indexación y <em>Slicing</em></h2>
+<p>La característica más importante de una cadena es que es una <strong>secuencia ordenada de caracteres</strong>. Esto significa que cada carácter tiene una posición (un <strong>índice</strong>) y podemos acceder a él.</p>
+<h3>Indexación (acceder a un carácter)</h3>
+<p>En Python, los índices empiezan a contar desde <strong>cero (0)</strong>.</p>
+<p>Imagina la palabra <code>&quot;PYTHON&quot;</code> como una serie de cajas numeradas:</p>
+<table>
+<thead>
+<tr>
+<th align="center">P</th>
+<th align="center">Y</th>
+<th align="center">T</th>
+<th align="center">H</th>
+<th align="center">O</th>
+<th align="center">N</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">4</td>
+<td align="center">5</td>
+</tr>
+</tbody></table>
+<p>Para acceder a un carácter, usamos corchetes <code>[]</code> después de la variable.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>palabra = &quot;PYTHON&quot;
+print(palabra[0])  # Muestra &#39;P&#39; (el primer carácter)
+print(palabra[3])  # Muestra &#39;H&#39;
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="3" aria-label="Código Python editable">palabra = &quot;PYTHON&quot;
+print(palabra[0])  # Muestra &#39;P&#39; (el primer carácter)
+print(palabra[3])  # Muestra &#39;H&#39;
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<blockquote>
+<p><strong>Tip: Indexación negativa</strong>
+Python también permite contar desde el final usando números negativos. El <code>-1</code> es el último carácter, <code>-2</code> el penúltimo, y así sucesivamente.</p>
+</blockquote>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>print(palabra[-1]) # Muestra &#39;N&#39; (el último carácter)
+print(palabra[-2]) # Muestra &#39;O&#39;
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">print(palabra[-1]) # Muestra &#39;N&#39; (el último carácter)
+print(palabra[-2]) # Muestra &#39;O&#39;
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3><em>Slicing</em> (Extraer sub-cadenas)</h3>
+<p>El <em>slicing</em> (rebanado) nos permite extraer una porción de la cadena. La sintaxis es <code>[inicio:fin]</code>.</p>
+<ul>
+<li><code>inicio</code>: El índice donde empieza la rebanada (incluido).</li>
+<li><code>fin</code>: El índice donde termina la rebanada (<strong>no incluido</strong>).</li>
+</ul>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>palabra = &quot;PYTHON&quot;
+print(palabra[0:3])  # Desde el índice 0 hasta el 3 (sin incluirlo). Muestra &quot;PYT&quot;
+print(palabra[2:5])  # Desde el índice 2 hasta el 5 (sin incluirlo). Muestra &quot;THO&quot;
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="3" aria-label="Código Python editable">palabra = &quot;PYTHON&quot;
+print(palabra[0:3])  # Desde el índice 0 hasta el 3 (sin incluirlo). Muestra &quot;PYT&quot;
+print(palabra[2:5])  # Desde el índice 2 hasta el 5 (sin incluirlo). Muestra &quot;THO&quot;
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p><strong>Atajos para el <em>slicing</em>:</strong></p>
+<ul>
+<li>Si omites el <code>inicio</code>, Python asume que es desde el principio (<code>0</code>).</li>
+<li>Si omites el <code>fin</code>, Python asume que es hasta el final.</li>
+</ul>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>print(palabra[:3]) # Desde el principio hasta el 3. Muestra &quot;PYT&quot;
+print(palabra[3:]) # Desde el 3 hasta el final. Muestra &quot;HON&quot;
+print(palabra[:])  # Muestra una copia de la cadena completa &quot;PYTHON&quot;
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="3" aria-label="Código Python editable">print(palabra[:3]) # Desde el principio hasta el 3. Muestra &quot;PYT&quot;
+print(palabra[3:]) # Desde el 3 hasta el final. Muestra &quot;HON&quot;
+print(palabra[:])  # Muestra una copia de la cadena completa &quot;PYTHON&quot;
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Inmutabilidad: Las cadenas no se pueden cambiar</h2>
+<p>Este es un concepto clave en Python. Una vez que creas una cadena, <strong>no puedes modificar sus caracteres</strong>. A esto se le llama <strong>inmutabilidad</strong>.</p>
+<p>Si intentas cambiar un carácter directamente, obtendrás un error:</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>nombre = &quot;Josu&quot;
+# nombre[0] = &quot;j&quot; # ¡Esto dará un TypeError!
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">nombre = &quot;Josu&quot;
+# nombre[0] = &quot;j&quot; # ¡Esto dará un TypeError!
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p><strong>¿Entonces cómo «modificamos» una cadena?</strong></p>
+<p>Creamos una <strong>nueva</strong> cadena a partir de la original.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>nombre = &quot;Josu&quot;
+nombre_minuscula = &quot;j&quot; + nombre[1:] # Concatenamos &#39;j&#39; con la rebanada &#39;osu&#39;
+print(nombre_minuscula) # Muestra &quot;josu&quot;
+print(nombre)           # La original sigue intacta: &quot;Josu&quot;
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="4" aria-label="Código Python editable">nombre = &quot;Josu&quot;
+nombre_minuscula = &quot;j&quot; + nombre[1:] # Concatenamos &#39;j&#39; con la rebanada &#39;osu&#39;
+print(nombre_minuscula) # Muestra &quot;josu&quot;
+print(nombre)           # La original sigue intacta: &quot;Josu&quot;
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Métodos y operadores de cadenas</h2>
+<p>Las cadenas tienen muchas «funciones» incorporadas llamadas <strong>métodos</strong> y operadores especiales que nos facilitan la vida.</p>
+<h3>Operador <code>in</code>: Comprobando pertenencia</h3>
+<p>A menudo, no necesitamos saber <em>dónde</em> está algo, sino simplemente si <em>está o no</em>. Para esto usamos el operador <code>in</code>, que devuelve un booleano (<code>True</code> o <code>False</code>). Es perfecto para usarlo en condicionales <code>if</code>.</p>
+<p>Sintaxis: <code>subcadena in cadena_principal</code></p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>frase = &quot;El veloz zorro marrón salta sobre el perro perezoso.&quot;
+
+if &quot;zorro&quot; in frase:
+    print(&quot;¡Sí, la palabra &#39;zorro&#39; está en la frase!&quot;)
+
+if &quot;gato&quot; not in frase:
+    print(&quot;No, la palabra &#39;gato&#39; no está en la frase.&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="7" aria-label="Código Python editable">frase = &quot;El veloz zorro marrón salta sobre el perro perezoso.&quot;
+
+if &quot;zorro&quot; in frase:
+    print(&quot;¡Sí, la palabra &#39;zorro&#39; está en la frase!&quot;)
+
+if &quot;gato&quot; not in frase:
+    print(&quot;No, la palabra &#39;gato&#39; no está en la frase.&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<blockquote>
+<p><strong>Importante:</strong> El operador <code>in</code> distingue entre mayúsculas y minúsculas.</p>
+</blockquote>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>texto = &quot;Hola Mundo&quot;
+print(&quot;mundo&quot; in texto) # Muestra False, porque la &#39;M&#39; es mayúscula.
+# Solución: convertir todo a minúsculas para la comprobación.
+print(&quot;mundo&quot; in texto.lower()) # Muestra True
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="4" aria-label="Código Python editable">texto = &quot;Hola Mundo&quot;
+print(&quot;mundo&quot; in texto) # Muestra False, porque la &#39;M&#39; es mayúscula.
+# Solución: convertir todo a minúsculas para la comprobación.
+print(&quot;mundo&quot; in texto.lower()) # Muestra True
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Cambio de mayúsculas y minúsculas</h3>
+<ul>
+<li><code>.upper()</code>: Convierte toda la cadena a mayúsculas.</li>
+<li><code>.lower()</code>: Convierte toda la cadena a minúsculas.</li>
+<li><code>.capitalize()</code>: Pone en mayúscula solo el primer carácter.</li>
+<li><code>.title()</code>: Pone en mayúscula el primer carácter de cada palabra.</li>
+</ul>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>frase = &quot;hola, bienvenido al MUNDO de python&quot;
+print(frase.upper())      # Muestra: &quot;HOLA, BIENVENIDO AL MUNDO DE PYTHON&quot;
+print(frase.capitalize()) # Muestra: &quot;Hola, bienvenido al mundo de python&quot;
+print(frase.title())      # Muestra: &quot;Hola, Bienvenido Al Mundo De Python&quot;
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="4" aria-label="Código Python editable">frase = &quot;hola, bienvenido al MUNDO de python&quot;
+print(frase.upper())      # Muestra: &quot;HOLA, BIENVENIDO AL MUNDO DE PYTHON&quot;
+print(frase.capitalize()) # Muestra: &quot;Hola, bienvenido al mundo de python&quot;
+print(frase.title())      # Muestra: &quot;Hola, Bienvenido Al Mundo De Python&quot;
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Búsqueda y reemplazo</h3>
+<ul>
+<li><code>.find(&#39;texto&#39;)</code>: Busca <code>&#39;texto&#39;</code> dentro de la cadena y devuelve el índice de su <strong>primera aparición</strong>. Si no lo encuentra, devuelve <code>-1</code>.</li>
+<li><code>.replace(&#39;viejo&#39;, &#39;nuevo&#39;)</code>: Devuelve una nueva cadena reemplazando todas las apariciones de <code>&#39;viejo&#39;</code> por <code>&#39;nuevo&#39;</code>.</li>
+</ul>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>email = &quot;alumno@ejemplo.com&quot;
+print(email.find(&#39;@&#39;))      # Muestra 6 (la posición de la arroba)
+print(email.find(&#39;xyz&#39;))    # Muestra -1 (no lo encuentra)
+
+frase_fea = &quot;Python es aburrido.&quot;
+frase_bonita = frase_fea.replace(&quot;aburrido&quot;, &quot;divertido&quot;)
+print(frase_bonita) # Muestra &quot;Python es divertido.&quot;
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="7" aria-label="Código Python editable">email = &quot;alumno@ejemplo.com&quot;
+print(email.find(&#39;@&#39;))      # Muestra 6 (la posición de la arroba)
+print(email.find(&#39;xyz&#39;))    # Muestra -1 (no lo encuentra)
+
+frase_fea = &quot;Python es aburrido.&quot;
+frase_bonita = frase_fea.replace(&quot;aburrido&quot;, &quot;divertido&quot;)
+print(frase_bonita) # Muestra &quot;Python es divertido.&quot;
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Limpieza de espacios en blanco</h3>
+<ul>
+<li><code>.strip()</code>: Elimina los espacios en blanco (o saltos de línea) al principio y al final de la cadena. Muy útil para limpiar la entrada del usuario.</li>
+</ul>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>usuario_input = &quot;  josu  &quot;
+print(usuario_input.strip()) # Muestra &quot;josu&quot; (sin los espacios)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">usuario_input = &quot;  josu  &quot;
+print(usuario_input.strip()) # Muestra &quot;josu&quot; (sin los espacios)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Formateo de cadenas, las f-strings</h2>
+<p>Hasta ahora, para combinar texto y variables, hemos usado <code>+</code>:</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>nombre = &quot;Carla&quot;
+edad = 30
+# Forma antigua y poco práctica:
+print(&quot;Hola, &quot; + nombre + &quot;. Tienes &quot; + str(edad) + &quot; años.&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="4" aria-label="Código Python editable">nombre = &quot;Carla&quot;
+edad = 30
+# Forma antigua y poco práctica:
+print(&quot;Hola, &quot; + nombre + &quot;. Tienes &quot; + str(edad) + &quot; años.&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>Esto es engorroso: hay que tener cuidado con los espacios y convertir los números a <code>str()</code> manualmente.</p>
+<p>Python nos ofrece una forma mucho mejor: las <strong>f-strings</strong>.</p>
+<p><strong>¿Cómo se usan?</strong></p>
+<ol>
+<li>Pon una <code>f</code> justo antes de las comillas de apertura.</li>
+<li>Inserta tus variables directamente dentro de la cadena, rodeadas por llaves <code>{}</code>.</li>
+</ol>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>nombre = &quot;Carla&quot;
+edad = 30
+# Forma moderna con f-string:
+print(f&quot;Hola, {nombre}. Tienes {edad} años.&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="4" aria-label="Código Python editable">nombre = &quot;Carla&quot;
+edad = 30
+# Forma moderna con f-string:
+print(f&quot;Hola, {nombre}. Tienes {edad} años.&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>Como ves, es mucho más limpio y legible. Dentro de las llaves puedes poner incluso operaciones:</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>print(f&quot;El año que viene tendrás {edad + 1} años.&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">print(f&quot;El año que viene tendrás {edad + 1} años.&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Aprovechando las f-strings</h3>
+<p>La utilidad real de las f-strings aparece cuando añadimos <strong>opciones de formato</strong> dentro de las llaves, justo después de la variable, separadas por dos puntos (<code>:</code>).</p>
+<p>Sintaxis: <code>f&quot;{variable:formato}&quot;</code></p>
+<p>Veamos los casos más útiles.</p>
+<h3>Controlando el ancho y la alineación</h3>
+<p>Podemos reservar un número de espacios para nuestra variable y decidir cómo se alinea dentro de ese espacio. Esto es ideal para mostrar datos en columnas bien ordenadas.</p>
+<ul>
+<li><code>&lt;</code> : Alinear a la izquierda (por defecto para texto).</li>
+<li><code>^</code> : Centrar.</li>
+<li><code>&gt;</code> : Alinear a la derecha (por defecto para números).</li>
+</ul>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code># Reservamos 15 caracteres para cada nombre
+nombre1 = &quot;Ana&quot;
+nombre2 = &quot;Rodrigo&quot;
+nombre3 = &quot;Margarita&quot;
+
+print(f&quot;|{nombre1:&lt;15}|&quot;) # Alinear a la izquierda
+print(f&quot;|{nombre2:^15}|&quot;) # Centrar
+print(f&quot;|{nombre3:&gt;15}|&quot;) # Alinear a la derecha
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="8" aria-label="Código Python editable"># Reservamos 15 caracteres para cada nombre
+nombre1 = &quot;Ana&quot;
+nombre2 = &quot;Rodrigo&quot;
+nombre3 = &quot;Margarita&quot;
+
+print(f&quot;|{nombre1:&lt;15}|&quot;) # Alinear a la izquierda
+print(f&quot;|{nombre2:^15}|&quot;) # Centrar
+print(f&quot;|{nombre3:&gt;15}|&quot;) # Alinear a la derecha
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p><strong>Salida:</strong></p>
+<pre><code>|Ana            |
+|    Rodrigo    |
+|      Margarita|
+</code></pre>
+<blockquote>
+<p><strong>Tip: Carácter de relleno</strong>
+Puedes especificar qué carácter usar para rellenar el espacio sobrante, poniéndolo justo antes del símbolo de alineación.</p>
+</blockquote>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>print(f&quot;|{nombre2:*^15}|&quot;) # Centra y rellena con asteriscos
+# Salida: |***Rodrigo****|
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">print(f&quot;|{nombre2:*^15}|&quot;) # Centra y rellena con asteriscos
+# Salida: |***Rodrigo****|
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Formateando números decimales (<code>float</code>)</h3>
+<p>Cuando trabajamos con cálculos, a menudo obtenemos resultados con demasiados decimales. Podemos controlar con precisión cuántos queremos mostrar.</p>
+<p>La sintaxis es <code>:.Nf</code>, donde <code>N</code> es el número de decimales que queremos.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>pi = 3.14159265
+division = 10 / 3
+
+print(f&quot;El valor de pi es: {pi}&quot;)
+print(f&quot;El resultado de la división es: {division}&quot;)
+
+print(&quot;--- Formateado ---&quot;)
+# Mostramos pi con solo 2 decimales
+print(f&quot;El valor de pi es: {pi:.2f}&quot;)
+
+# Mostramos la división con 4 decimales
+print(f&quot;El resultado de la división es: {division:.4f}&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="12" aria-label="Código Python editable">pi = 3.14159265
+division = 10 / 3
+
+print(f&quot;El valor de pi es: {pi}&quot;)
+print(f&quot;El resultado de la división es: {division}&quot;)
+
+print(&quot;--- Formateado ---&quot;)
+# Mostramos pi con solo 2 decimales
+print(f&quot;El valor de pi es: {pi:.2f}&quot;)
+
+# Mostramos la división con 4 decimales
+print(f&quot;El resultado de la división es: {division:.4f}&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p><strong>Salida:</strong></p>
+<pre><code>El valor de pi es: 3.14159265
+El resultado de la división es: 3.3333333333333335
+--- Formateado ---
+El valor de pi es: 3.14
+El resultado de la división es: 3.3333
+</code></pre>
+<h3>Combinando formatos y otros trucos útiles</h3>
+<p>Lo mejor es que puedes combinar estas reglas. Por ejemplo, alinear un número y a la vez limitar sus decimales.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>precio = 49.9
+# Reservar 10 espacios, alinear a la derecha y mostrar 2 decimales
+print(f&quot;Precio: ${precio:&gt;10.2f}&quot;)
+# Salida: Precio: $     49.90
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="4" aria-label="Código Python editable">precio = 49.9
+# Reservar 10 espacios, alinear a la derecha y mostrar 2 decimales
+print(f&quot;Precio: ${precio:&gt;10.2f}&quot;)
+# Salida: Precio: $     49.90
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p><strong>Otros formatos muy prácticos:</strong></p>
+<ul>
+<li><strong>Separador de miles (<code>:,</code>):</strong> Añade comas para hacer los números grandes más legibles.<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>numero_grande = 1234567890
+print(f&quot;Población mundial aproximada: {numero_grande:,}&quot;)
+# Salida: Población mundial aproximada: 1,234,567,890
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="3" aria-label="Código Python editable">numero_grande = 1234567890
+print(f&quot;Población mundial aproximada: {numero_grande:,}&quot;)
+# Salida: Población mundial aproximada: 1,234,567,890
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+<li><strong>Porcentajes (<code>:%</code>):</strong> Multiplica el número por 100 y le añade el símbolo <code>%</code>.<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>descuento = 0.25
+print(f&quot;Oferta especial: ¡Un {descuento:.0%} de descuento!&quot;)
+# Salida: Oferta especial: ¡Un 25% de descuento!
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="3" aria-label="Código Python editable">descuento = 0.25
+print(f&quot;Oferta especial: ¡Un {descuento:.0%} de descuento!&quot;)
+# Salida: Oferta especial: ¡Un 25% de descuento!
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+</ul>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Ejercicios prácticos</h2>
+<h3>1. Extractor de información</h3>
+<p>Pide al usuario que introduzca su dirección de email. Luego, usando <em>slicing</em>, extrae y muestra por separado el nombre de usuario y el dominio.</p>
+<ul>
+<li><strong>Pista:</strong> Primero, encuentra la posición del <code>@</code> con el método <code>.find()</code>.</li>
+<li><strong>Ejemplo:</strong> Si el email es <code>nombre.apellido@gmail.com</code>, el programa debería mostrar:<ul>
+<li>Nombre de usuario: <code>nombre.apellido</code></li>
+<li>Dominio: <code>gmail.com</code></li>
+</ul>
+</li>
+</ul>
+<h3>2. Formateador de nombres</h3>
+<ol>
+<li>Pide al usuario su nombre completo (puede que lo escriba con mayúsculas, minúsculas y espacios extra).</li>
+<li>Limpia los espacios en blanco al principio y al final.</li>
+<li>Formatea el nombre para que aparezca en formato de título (la primera letra de cada palabra en mayúscula).</li>
+<li>Muestra un saludo personalizado usando una f-string, por ejemplo: <code>¡Bienvenido, Nombre Apellido!</code></li>
+</ol>
+<h3>3. Censor de palabras</h3>
+<ol>
+<li>Pide al usuario una palabra que quiera censurar de esa frase.</li>
+<li>Pide al usuario que introduzca una frase, para censurarla.</li>
+<li>Usa el método <code>.replace()</code> para sustituir esa palabra por <code>&quot;[CENSURADO]&quot;</code>.</li>
+<li>Muestra la frase original y la frase censurada.</li>
+<li><strong>Extra:</strong> Integra los pasos 2-4 dentro de un bucle <code>while</code> para que el usuario pueda continuar introduciendo frases y aparezca censurado. Además, puedes usar el carácter ▮ para censurar.</li>
+</ol>
+<h3>4. Palíndromos</h3>
+<p>Un palíndromo es una palabra o frase que se lee igual de izquierda a derecha que de derecha a izquierda (ej: &quot;ana&quot;, &quot;radar&quot;, &quot;oso&quot;).</p>
+<ol>
+<li>Pide al usuario una palabra.</li>
+<li>Limpia la palabra: conviértela a minúsculas y quítale los espacios con <code>.replace(&quot; &quot;, &quot;&quot;)</code>.</li>
+<li>Crea una versión invertida de la palabra. <em>Pista: puedes usar slicing con un paso negativo</em> <code>palabra\[\:\:-1]</code></li>
+<li>Compara la palabra limpia con su versión invertida y dile al usuario si es un palíndromo o no.</li>
+</ol>
+<h3>5. Dibujante de separadores</h3>
+<p>Escribe un programa que haga lo siguiente:</p>
+<ol>
+<li>Pida al usuario un título para una sección.</li>
+<li>Pida al usuario un carácter para usar como adorno (ej: <code>-</code>, <code>*</code>, =, <code>#</code>).</li>
+<li>Calcule la longitud del título.</li>
+<li>Usando la multiplicación de cadenas, cree una línea de adorno que sea 4 caracteres más larga que el título (dos por cada lado).</li>
+<li>Muestre el título centrado con sus adornos.</li>
+</ol>
+<p><strong>Ejemplo de ejecución:</strong></p>
+<pre><code>Introduce el título: Conceptos Básicos
+Introduce el carácter de adorno: =
+
+=======================
+  Conceptos Básicos
+=======================
+</code></pre>
+<p><em>Pista: Para la línea del título, puedes concatenar <code>adorno + &quot; &quot; + titulo + &quot; &quot; + adorno</code>.</em></p>
+<h3>6. Generador de tickets de compra</h3>
+<p><strong>Objetivo:</strong> Crear un programa que simule un ticket de compra simple. El objetivo es que la salida esté perfectamente formateada y alineada, como un ticket real, utilizando las capacidades avanzadas de las f-strings.</p>
+<p><strong>Instrucciones:</strong></p>
+<ol>
+<li><p><strong>Define las variables:</strong>
+ Crea variables para al menos tres productos diferentes. Cada producto debe tener un nombre (texto), una cantidad (puede ser entero o flotante) y un precio unitario (flotante). También define una variable para el tipo de IVA (por ejemplo, 21% se escribe como <code>0.21</code>).</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code># Datos de los productos
+producto1_nombre = &quot;Barra de pan&quot;
+producto1_cant = 2
+producto1_precio = 0.85
+
+producto2_nombre = &quot;Leche (litro)&quot;
+producto2_cant = 1
+producto2_precio = 1.05
+
+producto3_nombre = &quot;Manzanas (kg)&quot;
+producto3_cant = 1.5
+producto3_precio = 1.99
+
+# IVA
+IVA = 0.21
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="15" aria-label="Código Python editable"># Datos de los productos
+producto1_nombre = &quot;Barra de pan&quot;
+producto1_cant = 2
+producto1_precio = 0.85
+
+producto2_nombre = &quot;Leche (litro)&quot;
+producto2_cant = 1
+producto2_precio = 1.05
+
+producto3_nombre = &quot;Manzanas (kg)&quot;
+producto3_cant = 1.5
+producto3_precio = 1.99
+
+# IVA
+IVA = 0.21
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+<li><p><strong>Realiza los cálculos:</strong></p>
+<ul>
+<li>Calcula el total para cada producto (cantidad * precio).</li>
+<li>Calcula el subtotal (la suma de los totales de todos los productos).</li>
+<li>Calcula la cantidad de IVA a aplicar sobre el subtotal.</li>
+<li>Calcula el total final (subtotal + IVA).</li>
+</ul>
+</li>
+<li><p><strong>Imprime el Ticket Formateado:</strong> Utiliza f-strings para imprimir el ticket. Debe tener:</p>
+<ul>
+<li>Un encabezado para el ticket.</li>
+<li>Cabeceras para las columnas: &quot;Producto&quot;, &quot;Cant.&quot;, &quot;Precio Unit.&quot;, &quot;Total&quot;. Asegúrate de que estén bien alineadas.</li>
+<li>Una línea por cada producto, con los datos alineados bajo sus cabeceras. Los precios y totales deben mostrarse siempre con <strong>2 decimales</strong>.</li>
+<li>Una línea separadora.</li>
+<li>Las líneas para el Subtotal, el IVA (mostrando el porcentaje aplicado) y el Total Final. Estas deben estar alineadas a la derecha.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Salida esperada:</strong></p>
+<p>Tu programa debería generar una salida que se vea exactamente así (con los mismos espacios y alineación):</p>
+<pre><code>==================================================
+                 TICKET DE COMPRA
+==================================================
+Producto             Cant.  Precio Unit.     Total
+--------------------------------------------------
+Barra de pan             2          0.85      1.70
+Leche (litro)            1          1.05      1.05
+Manzanas (kg)          1.5          1.99      2.98
+--------------------------------------------------
+                             Subtotal:       5.73
+                            IVA (21%):       1.20
+                        TOTAL A PAGAR:       6.93
+</code></pre>
+<p><strong>Pistas:</strong></p>
+<ul>
+<li>Para las cabeceras y las líneas de productos, combina la alineación a la izquierda (<code>&lt;</code>) para el nombre del producto y a la derecha (<code>&gt;</code>) para los números.</li>
+<li>Usa el formato <code>:.2f</code> para todos los precios y totales.</li>
+<li>Para la línea del IVA, puedes anidar una f-string dentro de otra para mostrar el porcentaje: <code>f&quot;IVA ({IVA:.0%}):&quot;</code></li>
+<li>Juega con los números de ancho en tus f-strings (ej: <code>{variable:&gt;10.2f}</code>) hasta que las columnas queden perfectamente alineadas como en el ejemplo.</li>
+</ul>
+
+</section>
+
+
+      <footer class="page-footer">
+        <p><a href="../index.html">← Volver al índice</a> · Programación en Python · Material de aula</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- ======================= VISOR DE DIAPOSITIVAS ======================= -->
+  <div class="slideshow" id="slideshow" hidden>
+    <div class="slideshow__progress"><div class="slideshow__bar" id="slides-bar"></div></div>
+    <button class="slideshow__close" id="slides-close" title="Salir (Esc)">✕</button>
+    <div class="slideshow__stage" id="slides-stage"></div>
+    <div class="slideshow__controls">
+      <button class="slideshow__nav" id="slides-prev" title="Anterior (←)">←</button>
+      <span class="slideshow__dots" id="slides-dots" hidden></span>
+      <span class="slideshow__counter" id="slides-counter">1 / 1</span>
+      <button class="slideshow__nav" id="slides-next" title="Siguiente (→)">→</button>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

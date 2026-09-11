@@ -15,6 +15,24 @@
       "titulo": "Primeros comandos",
       "materia": "python",
       "descripcion": "Comentarios, variables, tipos de datos, operadores, print(), input(), casting y condicionales."
+    },
+    {
+      "archivo": "capitulos/03-terminando-con-lo-basico.md",
+      "titulo": "Terminando con lo básico",
+      "materia": "python",
+      "descripcion": "Nombres de variables, funciones internas y operadores aritméticos, de comparación y lógicos."
+    },
+    {
+      "archivo": "capitulos/04-control-de-flujo.md",
+      "titulo": "Control de flujo",
+      "materia": "python",
+      "descripcion": "Decisiones con if, elif y else, bucles while y control con break y continue."
+    },
+    {
+      "archivo": "capitulos/05-cadenas.md",
+      "titulo": "Cadenas en Python",
+      "materia": "python",
+      "descripcion": "Índices, slicing, métodos de texto y f-strings para dar formato a cadenas y números."
     }
   ]
 }
