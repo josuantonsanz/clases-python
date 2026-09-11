@@ -263,8 +263,8 @@
       boton.blur();
     });
   }
-  btnSlides.addEventListener("click", abrir);
-  btnCerrar.addEventListener("click", cerrar);
+  alPulsar(btnSlides, abrir);
+  alPulsar(btnCerrar, cerrar);
   alPulsar(btnNext, siguiente);
   alPulsar(btnPrev, anterior);
 
