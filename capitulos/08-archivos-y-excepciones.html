@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archivos y excepciones · Programación en Python</title>
+  <meta name="description" content="Archivos y excepciones — Programación en Python">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <!-- ======================= BARRA SUPERIOR ======================= -->
+  <header class="topbar">
+    <div class="topbar__title">
+      <button class="btn btn--ghost topbar__menu" id="btn-menu" aria-label="Abrir índice">☰</button>
+      <span class="topbar__brand">Programación en Python</span>
+    </div>
+    <div class="topbar__actions">
+      <a class="btn btn--outline" href="../index.html" title="Volver al índice general">⌂ <span class="btn__label">Índice</span></a>
+      <button class="btn btn--outline" id="btn-print" title="Imprimir o guardar como PDF (Ctrl+P)">
+        🖨️ <span class="btn__label">Imprimir / PDF</span>
+      </button>
+      <button class="btn btn--primary" id="btn-slides" title="Ver el contenido como diapositivas">
+        ▶ <span class="btn__label">Diapositivas</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- ======================= ÍNDICE LATERAL ======================= -->
+    <nav class="sidebar" id="sidebar" aria-label="Índice del capítulo">
+      <p class="sidebar__title">Índice del capítulo</p>
+      <ol class="toc" id="toc"><!-- se genera con JS --></ol>
+      <p class="sidebar__hint">Pulsa <kbd>Ctrl</kbd>+<kbd>P</kbd> para imprimir / guardar como PDF.</p>
+    </nav>
+
+    <!-- ======================= CONTENIDO ======================= -->
+    <main class="content" id="content">
+
+      <header class="cover" id="portada">
+  <p class="cover__kicker">Programación en Python · Capítulo 8</p>
+  <h1 class="cover__title">Archivos y excepciones</h1>
+  <p class="cover__subtitle"><span class="tag tag--py">Python</span></p>
+  <div class="cover__meta"><span>Curso 2026 – 2027</span><span>Programación</span></div>
+</header>
+
+      <section class="slide" data-materia="python">
+  <h2>Leer archivos</h2>
+<p>Al cerrar un programa, sus variables y listas desaparecen de la memoria. Para crear programas útiles necesitamos <strong>persistencia</strong>: guardar información en el disco.</p>
+<p>En este capítulo aprenderás a:</p>
+<ol>
+<li>Leer archivos de texto.</li>
+<li>Escribir y guardar información.</li>
+<li>Gestionar errores con excepciones para que un programa no se rompa.</li>
+<li>Guardar estructuras de datos como listas mediante JSON.</li>
+</ol>
+<p>Imagina que tenemos un archivo llamado <code>pi_digits.txt</code> en la misma carpeta que nuestro programa, con este contenido:</p>
+<pre><code class="language-text">3.1415926535
+  8979323846
+  2643383279
+</code></pre>
+<h3><code>open()</code> y el bloque <code>with</code></h3>
+<p>Para abrir un archivo usamos <code>open()</code>. La forma segura de hacerlo es dentro de un bloque <code>with</code>:</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>with open(&quot;pi_digits.txt&quot;) as fichero:
+    contenido = fichero.read()
+    print(contenido)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="3" aria-label="Código Python editable">with open(&quot;pi_digits.txt&quot;) as fichero:
+    contenido = fichero.read()
+    print(contenido)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>Al abrir un archivo, el sistema operativo reserva recursos para él. El bloque <code>with</code> se encarga de cerrar el archivo automáticamente al terminar, incluso aunque se produzca un error.</p>
+<h3>Leer línea por línea</h3>
+<p>No siempre queremos leer un archivo entero de golpe. Para procesarlo una línea cada vez, lo recorremos con un <code>for</code>:</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>nombre_archivo = &quot;pi_digits.txt&quot;
+
+with open(nombre_archivo) as fichero:
+    for linea in fichero:
+        print(linea.strip())  # Quita el salto de línea final
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="5" aria-label="Código Python editable">nombre_archivo = &quot;pi_digits.txt&quot;
+
+with open(nombre_archivo) as fichero:
+    for linea in fichero:
+        print(linea.strip())  # Quita el salto de línea final
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Guardar las líneas en una lista</h3>
+<p>Si quieres conservar el contenido después de cerrar el archivo, usa <code>.readlines()</code>. Cada línea se guarda como un elemento de una lista.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>with open(nombre_archivo) as fichero:
+    lineas = fichero.readlines()
+
+print(f&quot;El archivo tiene {len(lineas)} líneas.&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="4" aria-label="Código Python editable">with open(nombre_archivo) as fichero:
+    lineas = fichero.readlines()
+
+print(f&quot;El archivo tiene {len(lineas)} líneas.&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+<div class="box">
+<p class="box__title">Rutas en Windows</p>
+<p>En las rutas de Windows se usan barras invertidas (<code>\</code>), pero en Python puedes usar barras normales (<code>/</code>) también en Windows. Por ejemplo: <code>open(&quot;datos/mi_archivo.txt&quot;)</code>.</p>
+
+</div>
+</section>
+<section class="slide" data-materia="python">
+  <h2>Escribir en archivos</h2>
+<p>Para escribir, pasamos a <code>open()</code> un segundo argumento que indica el modo:</p>
+<table>
+<thead>
+<tr>
+<th>Modo</th>
+<th>Nombre</th>
+<th>Qué hace</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&#39;r&#39;</code></td>
+<td><em>read</em></td>
+<td>Lee un archivo. Es el modo por defecto.</td>
+</tr>
+<tr>
+<td><code>&#39;w&#39;</code></td>
+<td><em>write</em></td>
+<td>Escribe desde cero. Si ya existe, borra su contenido.</td>
+</tr>
+<tr>
+<td><code>&#39;a&#39;</code></td>
+<td><em>append</em></td>
+<td>Añade al final sin borrar el contenido anterior.</td>
+</tr>
+<tr>
+<td><code>&#39;r+&#39;</code></td>
+<td>lectura y escritura</td>
+<td>Permite leer y escribir.</td>
+</tr>
+</tbody></table>
+<h3>Crear o sobrescribir con <code>&#39;w&#39;</code></h3>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>nombre_archivo = &quot;programacion.txt&quot;
+
+with open(nombre_archivo, &quot;w&quot;) as fichero:
+    fichero.write(&quot;Me encanta programar.\n&quot;)
+    fichero.write(&quot;Es muy útil para automatizar tareas.\n&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="5" aria-label="Código Python editable">nombre_archivo = &quot;programacion.txt&quot;
+
+with open(nombre_archivo, &quot;w&quot;) as fichero:
+    fichero.write(&quot;Me encanta programar.\n&quot;)
+    fichero.write(&quot;Es muy útil para automatizar tareas.\n&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+<div class="box box--dato">
+<p class="box__title">Importante</p>
+<p><code>write()</code> no añade un salto de línea automáticamente. Es necesario escribir <code>\n</code> cuando lo necesites. Además, el modo <code>&#39;w&#39;</code> borra el contenido anterior del archivo si ya existe.</p>
+
+</div>
+<h3>Añadir contenido con <code>&#39;a&#39;</code></h3>
+<p>Para agregar líneas sin borrar lo que ya había:</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>with open(nombre_archivo, &quot;a&quot;) as fichero:
+    fichero.write(&quot;También me gusta gestionar redes.\n&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">with open(nombre_archivo, &quot;a&quot;) as fichero:
+    fichero.write(&quot;También me gusta gestionar redes.\n&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Excepciones: gestionar errores</h2>
+<p>Los archivos pueden no existir, una persona puede escribir un dato incorrecto o puede fallar una operación. Si no controlamos esos problemas, Python detiene el programa y muestra un <em>traceback</em>.</p>
+<p>Los bloques <code>try</code> y <code>except</code> permiten indicar qué hacer cuando sucede un error.</p>
+<h3>El bloque <code>try-except</code></h3>
+<p>Dentro de <code>try</code> colocamos el código que podría fallar. Dentro de <code>except</code>, la respuesta al error.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>try:
+    print(5 / 0)
+except ZeroDivisionError:
+    print(&quot;¡No puedes dividir por cero!&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="4" aria-label="Código Python editable">try:
+    print(5 / 0)
+except ZeroDivisionError:
+    print(&quot;¡No puedes dividir por cero!&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>El programa no se detiene: muestra el aviso y continúa.</p>
+<h3>Gestionar <code>FileNotFoundError</code></h3>
+<p>Este error es fundamental cuando pedimos al usuario que abra un archivo.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>archivo = &quot;no_existo.txt&quot;
+
+try:
+    with open(archivo) as fichero:
+        contenido = fichero.read()
+except FileNotFoundError:
+    print(f&quot;Lo siento, el archivo &#39;{archivo}&#39; no se encuentra en el sistema.&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="7" aria-label="Código Python editable">archivo = &quot;no_existo.txt&quot;
+
+try:
+    with open(archivo) as fichero:
+        contenido = fichero.read()
+except FileNotFoundError:
+    print(f&quot;Lo siento, el archivo &#39;{archivo}&#39; no se encuentra en el sistema.&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3><code>else</code> y <code>pass</code></h3>
+<ul>
+<li><code>else</code> se ejecuta solo si el bloque <code>try</code> termina correctamente.</li>
+<li><code>pass</code> no hace nada; es útil cuando queremos dejar un bloque vacío de forma temporal.</li>
+</ul>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>try:
+    resultado = 10 / 2
+except ZeroDivisionError:
+    print(&quot;Error de cálculo&quot;)
+else:
+    print(f&quot;El resultado es {resultado}&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="6" aria-label="Código Python editable">try:
+    resultado = 10 / 2
+except ZeroDivisionError:
+    print(&quot;Error de cálculo&quot;)
+else:
+    print(f&quot;El resultado es {resultado}&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3><code>finally</code></h3>
+<p>El código de <code>finally</code> se ejecuta <strong>siempre</strong>, haya error o no. Es útil para tareas de limpieza, como cerrar una conexión con un servidor.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>try:
+    print(&quot;Abriendo conexión con el servidor...&quot;)
+    resultado = 10 / 0
+    print(&quot;Enviando datos...&quot;)  # Esta línea no se ejecutará
+except ZeroDivisionError:
+    print(&quot;¡Error detectado! No se pudieron enviar los datos.&quot;)
+finally:
+    print(&quot;Cerrando conexión y liberando recursos...&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="8" aria-label="Código Python editable">try:
+    print(&quot;Abriendo conexión con el servidor...&quot;)
+    resultado = 10 / 0
+    print(&quot;Enviando datos...&quot;)  # Esta línea no se ejecutará
+except ZeroDivisionError:
+    print(&quot;¡Error detectado! No se pudieron enviar los datos.&quot;)
+finally:
+    print(&quot;Cerrando conexión y liberando recursos...&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>Salida:</p>
+<pre><code class="language-text">Abriendo conexión con el servidor...
+¡Error detectado! No se pudieron enviar los datos.
+Cerrando conexión y liberando recursos...
+</code></pre>
+
+<div class="box box--resumen">
+<p class="box__title">Los cuatro bloques</p>
+<ul>
+<li><strong><code>try</code></strong>: código que podría fallar.</li>
+<li><strong><code>except</code></strong>: qué hacer si ocurre el error indicado.</li>
+<li><strong><code>else</code></strong>: qué hacer si no hubo error.</li>
+<li><strong><code>finally</code></strong>: qué hacer siempre, normalmente para limpiar recursos.</li>
+</ul>
+
+</div>
+</section>
+<section class="slide" data-materia="python">
+  <h2>Guardar datos complejos con JSON</h2>
+<p>Un archivo <code>.txt</code> guarda texto. Para almacenar listas, diccionarios y otros datos estructurados podemos usar el módulo estándar <code>json</code>. JSON es un formato muy usado para intercambiar información entre programas.</p>
+<p>Primero debemos importarlo:</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>import json
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">import json
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Guardar datos con <code>json.dump()</code></h3>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>import json
+
+numeros = [2, 3, 5, 7, 11, 13]
+archivo = &quot;numeros.json&quot;
+
+with open(archivo, &quot;w&quot;) as fichero:
+    json.dump(numeros, fichero)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="7" aria-label="Código Python editable">import json
+
+numeros = [2, 3, 5, 7, 11, 13]
+archivo = &quot;numeros.json&quot;
+
+with open(archivo, &quot;w&quot;) as fichero:
+    json.dump(numeros, fichero)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Recuperar datos con <code>json.load()</code></h3>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>import json
+
+archivo = &quot;numeros.json&quot;
+
+with open(archivo) as fichero:
+    datos_recuperados = json.load(fichero)
+
+print(datos_recuperados)
+# [2, 3, 5, 7, 11, 13]
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="9" aria-label="Código Python editable">import json
+
+archivo = &quot;numeros.json&quot;
+
+with open(archivo) as fichero:
+    datos_recuperados = json.load(fichero)
+
+print(datos_recuperados)
+# [2, 3, 5, 7, 11, 13]
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>Esto permite, por ejemplo, guardar preferencias del usuario, un inventario o el estado de un programa para recuperarlo más tarde.</p>
+
+<div class="box box--resumen">
+<p class="box__title">Resumen</p>
+<ul>
+<li>Usa <code>with open(...) as fichero:</code> para que un archivo se cierre automáticamente.</li>
+<li><code>&#39;r&#39;</code> lee, <code>&#39;w&#39;</code> escribe borrando el contenido anterior y <code>&#39;a&#39;</code> añade al final.</li>
+<li><code>try-except</code> evita que un error esperado detenga el programa.</li>
+<li><code>json.dump()</code> guarda datos en JSON y <code>json.load()</code> los recupera.</li>
+</ul>
+
+</div>
+</section>
+<section class="slide" data-materia="python">
+  <h2>Ejercicios prácticos</h2>
+<h3>1. Registro de accesos</h3>
+<p>Imagina que administras un servidor y quieres registrar qué personas entran al sistema.</p>
+<ol>
+<li>Pide un nombre de usuario con el mensaje <code>Introduce tu nombre de usuario para acceder:</code>.</li>
+<li>Abre o crea <code>accesos.log</code> en modo añadir (<code>&#39;a&#39;</code>).</li>
+<li>Escribe una línea como <code>Usuario [NOMBRE] ha entrado al sistema.</code> y añade <code>\n</code>.</li>
+<li>Ejecuta el programa tres veces con nombres distintos y comprueba el archivo.</li>
+</ol>
+<p><em>Pista: usa <code>open(&quot;accesos.log&quot;, &quot;a&quot;)</code>.</em></p>
+<h3>2. El bloqueador de webs</h3>
+<p>Crea manualmente un archivo <code>blacklist.txt</code> en la misma carpeta que tu programa con este contenido:</p>
+<pre><code class="language-text">facebook.com
+instagram.com
+juegos.com
+tiktok.com
+</code></pre>
+<p>Después, crea un programa que:</p>
+<ol>
+<li>Abra el archivo en modo lectura.</li>
+<li>Lo recorra línea por línea.</li>
+<li>Muestre <code>Bloqueando acceso a: [DOMINIO]</code> para cada dominio.</li>
+<li>Use <code>.strip()</code> para que no aparezcan líneas vacías extra.</li>
+</ol>
+<h3>3. Recuperación de configuración</h3>
+<p>Crea un programa que intente abrir <code>config.txt</code> en modo lectura.</p>
+<ol>
+<li>Si el archivo existe, lee su contenido y muestra <code>Configuración cargada: [CONTENIDO]</code>.</li>
+<li>Si no existe, captura <code>FileNotFoundError</code> y muestra: <code>¡Aviso! No se encontró config.txt. Cargando configuración por defecto...</code>.</li>
+</ol>
+<p>Pruébalo primero sin crear el archivo y después con un archivo <code>config.txt</code> que contenga algún texto.</p>
+<h3>4. Inventario de hardware con JSON</h3>
+<ol>
+<li><p>Crea esta lista:</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>inventario = [&quot;Memoria RAM 8GB&quot;, &quot;Disco SSD 500GB&quot;, &quot;Cable Ethernet 5m&quot;, &quot;Pasta térmica&quot;]
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">inventario = [&quot;Memoria RAM 8GB&quot;, &quot;Disco SSD 500GB&quot;, &quot;Cable Ethernet 5m&quot;, &quot;Pasta térmica&quot;]
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+<li><p>Importa <code>json</code>.</p>
+</li>
+<li><p>Abre <code>inventario_taller.json</code> en modo escritura.</p>
+</li>
+<li><p>Guarda la lista con <code>json.dump()</code>.</p>
+</li>
+<li><p>Abre el archivo generado con un editor de texto y comprueba que tiene el formato de una lista JSON.</p>
+</li>
+</ol>
+
+</section>
+
+
+      <footer class="page-footer">
+        <p><a href="../index.html">← Volver al índice</a> · Programación en Python · Material de aula</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- ======================= VISOR DE DIAPOSITIVAS ======================= -->
+  <div class="slideshow" id="slideshow" hidden>
+    <div class="slideshow__progress"><div class="slideshow__bar" id="slides-bar"></div></div>
+    <button class="slideshow__close" id="slides-close" title="Salir (Esc)">✕</button>
+    <div class="slideshow__stage" id="slides-stage"></div>
+    <div class="slideshow__controls">
+      <button class="slideshow__nav" id="slides-prev" title="Anterior (←)">←</button>
+      <span class="slideshow__dots" id="slides-dots" hidden></span>
+      <span class="slideshow__counter" id="slides-counter">1 / 1</span>
+      <button class="slideshow__nav" id="slides-next" title="Siguiente (→)">→</button>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

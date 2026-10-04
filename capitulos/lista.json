@@ -33,6 +33,30 @@
       "titulo": "Cadenas en Python",
       "materia": "python",
       "descripcion": "Índices, slicing, métodos de texto y f-strings para dar formato a cadenas y números."
+    },
+    {
+      "archivo": "capitulos/06-listas-y-bucles-for.md",
+      "titulo": "Listas y bucles for",
+      "materia": "python",
+      "descripcion": "Repetición con for y range(), listas mutables, sus métodos y formas de recorrerlas."
+    },
+    {
+      "archivo": "capitulos/07-funciones.md",
+      "titulo": "Funciones",
+      "materia": "python",
+      "descripcion": "Crear funciones, usar parámetros y return, y comprender el ámbito local y global."
+    },
+    {
+      "archivo": "capitulos/08-archivos-y-excepciones.md",
+      "titulo": "Archivos y excepciones",
+      "materia": "python",
+      "descripcion": "Lectura y escritura de archivos, gestión de errores y persistencia de datos con JSON."
+    },
+    {
+      "archivo": "capitulos/09-tuplas-y-diccionarios.md",
+      "titulo": "Tuplas y diccionarios",
+      "materia": "python",
+      "descripcion": "Tuplas inmutables y diccionarios para organizar datos mediante claves y valores."
     }
   ]
 }

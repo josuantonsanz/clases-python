@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tuplas y diccionarios · Programación en Python</title>
+  <meta name="description" content="Tuplas y diccionarios — Programación en Python">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <!-- ======================= BARRA SUPERIOR ======================= -->
+  <header class="topbar">
+    <div class="topbar__title">
+      <button class="btn btn--ghost topbar__menu" id="btn-menu" aria-label="Abrir índice">☰</button>
+      <span class="topbar__brand">Programación en Python</span>
+    </div>
+    <div class="topbar__actions">
+      <a class="btn btn--outline" href="../index.html" title="Volver al índice general">⌂ <span class="btn__label">Índice</span></a>
+      <button class="btn btn--outline" id="btn-print" title="Imprimir o guardar como PDF (Ctrl+P)">
+        🖨️ <span class="btn__label">Imprimir / PDF</span>
+      </button>
+      <button class="btn btn--primary" id="btn-slides" title="Ver el contenido como diapositivas">
+        ▶ <span class="btn__label">Diapositivas</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- ======================= ÍNDICE LATERAL ======================= -->
+    <nav class="sidebar" id="sidebar" aria-label="Índice del capítulo">
+      <p class="sidebar__title">Índice del capítulo</p>
+      <ol class="toc" id="toc"><!-- se genera con JS --></ol>
+      <p class="sidebar__hint">Pulsa <kbd>Ctrl</kbd>+<kbd>P</kbd> para imprimir / guardar como PDF.</p>
+    </nav>
+
+    <!-- ======================= CONTENIDO ======================= -->
+    <main class="content" id="content">
+
+      <header class="cover" id="portada">
+  <p class="cover__kicker">Programación en Python · Capítulo 9</p>
+  <h1 class="cover__title">Tuplas y diccionarios</h1>
+  <p class="cover__subtitle"><span class="tag tag--py">Python</span></p>
+  <div class="cover__meta"><span>Curso 2026 – 2027</span><span>Programación</span></div>
+</header>
+
+      <section class="slide" data-materia="python">
+  <h2>Tuplas: listas inmutables</h2>
+<p>Las listas son muy útiles porque podemos añadir, quitar y cambiar elementos. Pero a veces necesitamos datos que <strong>no deben cambiar</strong>, o queremos buscar un dato por su nombre en vez de por su posición numérica.</p>
+<p>En este capítulo veremos dos estructuras fundamentales: las <strong>tuplas</strong> y los <strong>diccionarios</strong>.</p>
+<p>Imagina que programas un videojuego y defines el tamaño de la pantalla. No querrías que una parte del código cambiara su ancho por error durante la partida.</p>
+<p>Para guardar colecciones que no deben modificarse, Python ofrece las <strong>tuplas</strong>. Técnicamente, decimos que son <strong>inmutables</strong>.</p>
+<h3>Definir una tupla</h3>
+<p>Una tupla se parece mucho a una lista, pero se escribe con paréntesis <code>()</code> en vez de corchetes <code>[]</code>.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code># Una lista: se puede cambiar
+dimensiones_lista = [200, 50]
+
+# Una tupla: no se puede cambiar
+dimensiones = (200, 50)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="5" aria-label="Código Python editable"># Una lista: se puede cambiar
+dimensiones_lista = [200, 50]
+
+# Una tupla: no se puede cambiar
+dimensiones = (200, 50)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>Para acceder a sus datos usamos índices, igual que con las listas:</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>print(dimensiones[0])  # 200
+print(dimensiones[1])  # 50
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">print(dimensiones[0])  # 200
+print(dimensiones[1])  # 50
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Intentar modificar una tupla</h3>
+<p>Si intentamos modificar un elemento, Python produce un <code>TypeError</code>.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>dimensiones = (200, 50)
+# dimensiones[0] = 250  # TypeError
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">dimensiones = (200, 50)
+# dimensiones[0] = 250  # TypeError
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Reasignar una tupla completa</h3>
+<p>No podemos cambiar elementos <em>dentro</em> de una tupla, pero sí podemos asignar una nueva tupla completa a la variable.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>dimensiones = (200, 50)
+print(&quot;Dimensiones originales:&quot;)
+for dimension in dimensiones:
+    print(dimension)
+
+# Reasignamos la variable con una tupla nueva
+dimensiones = (400, 100)
+print(&quot;Dimensiones modificadas:&quot;)
+for dimension in dimensiones:
+    print(dimension)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="10" aria-label="Código Python editable">dimensiones = (200, 50)
+print(&quot;Dimensiones originales:&quot;)
+for dimension in dimensiones:
+    print(dimension)
+
+# Reasignamos la variable con una tupla nueva
+dimensiones = (400, 100)
+print(&quot;Dimensiones modificadas:&quot;)
+for dimension in dimensiones:
+    print(dimension)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+<div class="box">
+<p class="box__title">¿Cuándo usar tuplas?</p>
+<p>Úsalas cuando los valores deban permanecer constantes durante el programa: días de la semana, coordenadas fijas o configuraciones de hardware, por ejemplo.</p>
+
+</div>
+</section>
+<section class="slide" data-materia="python">
+  <h2>Diccionarios: datos con clave y valor</h2>
+<p>En una lista, para encontrar algo debes conocer su índice: <code>0</code>, <code>1</code>, <code>2</code>... Pero para describir a una persona resulta más claro pedir su «nombre» o su «edad».</p>
+<p>Un <strong>diccionario</strong> funciona como un diccionario de papel: buscas una <strong>clave</strong> y obtienes su <strong>valor</strong>. Se escribe con llaves <code>{}</code> y contiene pares <code>clave: valor</code>.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>mi_gato = {
+    &quot;tamaño&quot;: &quot;grande&quot;,
+    &quot;color&quot;: &quot;gris&quot;,
+    &quot;tipo&quot;: &quot;ruidoso&quot;
+}
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="5" aria-label="Código Python editable">mi_gato = {
+    &quot;tamaño&quot;: &quot;grande&quot;,
+    &quot;color&quot;: &quot;gris&quot;,
+    &quot;tipo&quot;: &quot;ruidoso&quot;
+}
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Acceder a los valores</h3>
+<p>Usamos la clave entre corchetes:</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>print(mi_gato[&quot;tamaño&quot;])
+print(f&quot;Mi gato tiene el pelo {mi_gato[&#39;color&#39;]}.&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">print(mi_gato[&quot;tamaño&quot;])
+print(f&quot;Mi gato tiene el pelo {mi_gato[&#39;color&#39;]}.&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Modificar y añadir datos</h3>
+<p>Los diccionarios son <strong>mutables</strong>. El orden no es lo importante: cada dato se identifica por su clave.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>alumno = {&quot;nombre&quot;: &quot;Pedro&quot;, &quot;edad&quot;: 15}
+
+# Añadir un dato
+alumno[&quot;curso&quot;] = &quot;4º ESO&quot;
+
+# Modificar un dato existente
+alumno[&quot;edad&quot;] = 16
+
+print(alumno)
+# {&#39;nombre&#39;: &#39;Pedro&#39;, &#39;edad&#39;: 16, &#39;curso&#39;: &#39;4º ESO&#39;}
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="10" aria-label="Código Python editable">alumno = {&quot;nombre&quot;: &quot;Pedro&quot;, &quot;edad&quot;: 15}
+
+# Añadir un dato
+alumno[&quot;curso&quot;] = &quot;4º ESO&quot;
+
+# Modificar un dato existente
+alumno[&quot;edad&quot;] = 16
+
+print(alumno)
+# {&#39;nombre&#39;: &#39;Pedro&#39;, &#39;edad&#39;: 16, &#39;curso&#39;: &#39;4º ESO&#39;}
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Evitar <code>KeyError</code> con <code>.get()</code></h3>
+<p>Si intentas acceder a una clave que no existe con <code>diccionario[&quot;clave&quot;]</code>, el programa falla con un <code>KeyError</code>.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>usuario = {&quot;nombre&quot;: &quot;Pedro&quot;, &quot;edad&quot;: 15}
+# print(usuario[&quot;color&quot;])  # KeyError: &#39;color&#39;
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">usuario = {&quot;nombre&quot;: &quot;Pedro&quot;, &quot;edad&quot;: 15}
+# print(usuario[&quot;color&quot;])  # KeyError: &#39;color&#39;
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>El método <code>.get()</code> es más seguro: si no encuentra la clave, devuelve un valor por defecto que elijas. Si no indicas ninguno, devuelve <code>None</code>.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>materiales = {&quot;manzanas&quot;: 5, &quot;vasos&quot;: 2}
+
+print(f&quot;Traigo {materiales.get(&#39;vasos&#39;, 0)} vasos.&quot;)
+print(f&quot;Traigo {materiales.get(&#39;huevos&#39;, 0)} huevos.&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="4" aria-label="Código Python editable">materiales = {&quot;manzanas&quot;: 5, &quot;vasos&quot;: 2}
+
+print(f&quot;Traigo {materiales.get(&#39;vasos&#39;, 0)} vasos.&quot;)
+print(f&quot;Traigo {materiales.get(&#39;huevos&#39;, 0)} huevos.&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>Salida:</p>
+<pre><code class="language-text">Traigo 2 vasos.
+Traigo 0 huevos.
+</code></pre>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Recorrer y utilizar diccionarios</h2>
+<p>Un diccionario se puede recorrer con un <code>for</code>. Sus métodos permiten elegir qué parte queremos obtener:</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Devuelve</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.keys()</code></td>
+<td>Las claves. Es el comportamiento por defecto al recorrer un diccionario.</td>
+</tr>
+<tr>
+<td><code>.values()</code></td>
+<td>Los valores.</td>
+</tr>
+<tr>
+<td><code>.items()</code></td>
+<td>Parejas de clave y valor.</td>
+</tr>
+</tbody></table>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>perfil = {&quot;color&quot;: &quot;rojo&quot;, &quot;edad&quot;: 42}
+
+print(&quot;--- Valores ---&quot;)
+for valor in perfil.values():
+    print(valor)
+
+print(&quot;\n--- Clave y valor ---&quot;)
+for clave, valor in perfil.items():
+    print(f&quot;La clave es &#39;{clave}&#39; y el valor es {valor}&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="9" aria-label="Código Python editable">perfil = {&quot;color&quot;: &quot;rojo&quot;, &quot;edad&quot;: 42}
+
+print(&quot;--- Valores ---&quot;)
+for valor in perfil.values():
+    print(valor)
+
+print(&quot;\n--- Clave y valor ---&quot;)
+for clave, valor in perfil.items():
+    print(f&quot;La clave es &#39;{clave}&#39; y el valor es {valor}&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Comprobar si existe una clave</h3>
+<p>Como con las listas, <code>in</code> comprueba si algo existe. En un diccionario, comprueba las <strong>claves</strong>.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>ordenador = {&quot;cpu&quot;: &quot;i7&quot;, &quot;ram&quot;: &quot;16 GB&quot;}
+
+if &quot;grafica&quot; in ordenador:
+    print(f&quot;Tiene gráfica: {ordenador[&#39;grafica&#39;]}&quot;)
+else:
+    print(&quot;Este ordenador no tiene tarjeta gráfica dedicada.&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="6" aria-label="Código Python editable">ordenador = {&quot;cpu&quot;: &quot;i7&quot;, &quot;ram&quot;: &quot;16 GB&quot;}
+
+if &quot;grafica&quot; in ordenador:
+    print(f&quot;Tiene gráfica: {ordenador[&#39;grafica&#39;]}&quot;)
+else:
+    print(&quot;Este ordenador no tiene tarjeta gráfica dedicada.&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Añadir un valor solo si no existe: <code>.setdefault()</code></h3>
+<p><code>.setdefault(clave, valor)</code> añade la clave con ese valor únicamente si todavía no existe. Es útil, por ejemplo, para contar apariciones.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>mensaje = &quot;Hola a todos los alumnos de SMR&quot;
+conteo = {}
+
+for letra in mensaje:
+    # La primera vez crea la clave con valor 0
+    conteo.setdefault(letra, 0)
+    conteo[letra] = conteo[letra] + 1
+
+print(conteo)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="9" aria-label="Código Python editable">mensaje = &quot;Hola a todos los alumnos de SMR&quot;
+conteo = {}
+
+for letra in mensaje:
+    # La primera vez crea la clave con valor 0
+    conteo.setdefault(letra, 0)
+    conteo[letra] = conteo[letra] + 1
+
+print(conteo)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Mostrar diccionarios grandes con <code>pprint</code></h3>
+<p>El módulo <code>pprint</code> (<em>pretty print</em>) muestra diccionarios grandes de forma más legible y ordenada.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>import pprint
+
+pprint.pprint(conteo)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="3" aria-label="Código Python editable">import pprint
+
+pprint.pprint(conteo)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+<div class="box box--resumen">
+<p class="box__title">Resumen</p>
+<ul>
+<li>Las <strong>tuplas</strong> se escriben con <code>()</code> y son inmutables.</li>
+<li>Los <strong>diccionarios</strong> se escriben con <code>{}</code> y relacionan cada clave con un valor.</li>
+<li>Usa <code>diccionario[clave]</code> si sabes que existe; usa <code>.get(clave, valor_por_defecto)</code> si podría faltar.</li>
+<li><code>.items()</code> permite recorrer claves y valores a la vez.</li>
+</ul>
+
+</div>
+</section>
+<section class="slide" data-materia="python">
+  <h2>Ejercicios prácticos</h2>
+<h3>1. El buffet: tuplas</h3>
+<p>Un restaurante de buffet ofrece cinco comidas básicas.</p>
+<ol>
+<li>Guarda cinco comidas sencillas en una tupla.</li>
+<li>Usa un <code>for</code> para mostrar cada comida.</li>
+<li>Intenta modificar un elemento y comprueba el error. Después comenta esa línea para que el programa pueda continuar.</li>
+<li>El restaurante cambia dos platos: reasigna la variable a una tupla nueva y vuelve a mostrar el menú.</li>
+</ol>
+<h3>2. Glosario de programación</h3>
+<p>Crea un diccionario con palabras de programación y sus definiciones.</p>
+<ul>
+<li>Incluye, por ejemplo, <code>bucle</code>, <code>lista</code>, <code>diccionario</code>, <code>string</code> y <code>tupla</code> como claves.</li>
+<li>Muestra cada palabra y su significado con un formato limpio usando f-strings y <code>\n</code> si lo necesitas.</li>
+</ul>
+<p>Ejemplo: <code>Bucle: estructura que repite un bloque de código...</code></p>
+<h3>3. Registro de usuarios</h3>
+<p>Simula una pequeña base de datos.</p>
+<ol>
+<li>Crea un diccionario vacío llamado <code>usuario</code>.</li>
+<li>Pide con <code>input()</code> el nombre, apellido, edad y correo electrónico.</li>
+<li>Guarda cada dato con una clave adecuada.</li>
+<li>Muestra: <code>El usuario {nombre} {apellido} tiene {edad} años y su correo es {email}</code>.</li>
+<li><strong>Extra:</strong> crea una lista vacía <code>lista_usuarios</code> y añade cada diccionario de usuario con <code>.append()</code> para guardar varios usuarios.</li>
+</ol>
+<h3>4. Contador de vocales</h3>
+<p>Crea un programa que pida una frase y cuente sus vocales.</p>
+<ol>
+<li><p>Empieza con este diccionario:</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>vocales = {&quot;a&quot;: 0, &quot;e&quot;: 0, &quot;i&quot;: 0, &quot;o&quot;: 0, &quot;u&quot;: 0}
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">vocales = {&quot;a&quot;: 0, &quot;e&quot;: 0, &quot;i&quot;: 0, &quot;o&quot;: 0, &quot;u&quot;: 0}
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+<li><p>Recorre la frase letra a letra.</p>
+</li>
+<li><p>Convierte cada letra a minúscula con <code>.lower()</code>.</p>
+</li>
+<li><p>Si es una vocal, aumenta su contador en el diccionario.</p>
+</li>
+<li><p>Muestra el resultado final.</p>
+</li>
+</ol>
+<h3>5. Inventario de hardware</h3>
+<p>Parte de este inventario:</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>inventario = {
+    &quot;ratones&quot;: 12,
+    &quot;teclados&quot;: 5,
+    &quot;monitores&quot;: 2
+}
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="5" aria-label="Código Python editable">inventario = {
+    &quot;ratones&quot;: 12,
+    &quot;teclados&quot;: 5,
+    &quot;monitores&quot;: 2
+}
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<ol>
+<li>Muestra el inventario con <code>.items()</code>.</li>
+<li>Pregunta qué artículo se quiere retirar del almacén.</li>
+<li>Usa <code>.get()</code> para comprobar si existe.</li>
+<li>Si no existe, muestra <code>No tenemos ese artículo</code>.</li>
+<li>Si existe pero tiene <code>0</code> unidades, muestra <code>No queda stock</code>.</li>
+<li>Si hay existencias, resta una unidad e informa de cuántas quedan.</li>
+</ol>
+
+</section>
+
+
+      <footer class="page-footer">
+        <p><a href="../index.html">← Volver al índice</a> · Programación en Python · Material de aula</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- ======================= VISOR DE DIAPOSITIVAS ======================= -->
+  <div class="slideshow" id="slideshow" hidden>
+    <div class="slideshow__progress"><div class="slideshow__bar" id="slides-bar"></div></div>
+    <button class="slideshow__close" id="slides-close" title="Salir (Esc)">✕</button>
+    <div class="slideshow__stage" id="slides-stage"></div>
+    <div class="slideshow__controls">
+      <button class="slideshow__nav" id="slides-prev" title="Anterior (←)">←</button>
+      <span class="slideshow__dots" id="slides-dots" hidden></span>
+      <span class="slideshow__counter" id="slides-counter">1 / 1</span>
+      <button class="slideshow__nav" id="slides-next" title="Siguiente (→)">→</button>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

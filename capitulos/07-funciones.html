@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Funciones · Programación en Python</title>
+  <meta name="description" content="Funciones — Programación en Python">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <!-- ======================= BARRA SUPERIOR ======================= -->
+  <header class="topbar">
+    <div class="topbar__title">
+      <button class="btn btn--ghost topbar__menu" id="btn-menu" aria-label="Abrir índice">☰</button>
+      <span class="topbar__brand">Programación en Python</span>
+    </div>
+    <div class="topbar__actions">
+      <a class="btn btn--outline" href="../index.html" title="Volver al índice general">⌂ <span class="btn__label">Índice</span></a>
+      <button class="btn btn--outline" id="btn-print" title="Imprimir o guardar como PDF (Ctrl+P)">
+        🖨️ <span class="btn__label">Imprimir / PDF</span>
+      </button>
+      <button class="btn btn--primary" id="btn-slides" title="Ver el contenido como diapositivas">
+        ▶ <span class="btn__label">Diapositivas</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- ======================= ÍNDICE LATERAL ======================= -->
+    <nav class="sidebar" id="sidebar" aria-label="Índice del capítulo">
+      <p class="sidebar__title">Índice del capítulo</p>
+      <ol class="toc" id="toc"><!-- se genera con JS --></ol>
+      <p class="sidebar__hint">Pulsa <kbd>Ctrl</kbd>+<kbd>P</kbd> para imprimir / guardar como PDF.</p>
+    </nav>
+
+    <!-- ======================= CONTENIDO ======================= -->
+    <main class="content" id="content">
+
+      <header class="cover" id="portada">
+  <p class="cover__kicker">Programación en Python · Capítulo 7</p>
+  <h1 class="cover__title">Funciones</h1>
+  <p class="cover__subtitle"><span class="tag tag--py">Python</span></p>
+  <div class="cover__meta"><span>Curso 2026 – 2027</span><span>Programación</span></div>
+</header>
+
+      <section class="slide" data-materia="python">
+  <h2>Introducción: ¿qué son las funciones?</h2>
+<p>Ya has usado funciones de Python sin darte cuenta: <code>print()</code>, <code>input()</code> y <code>len()</code> son herramientas que realizan una tarea concreta.</p>
+<p>Una <strong>función</strong> es un bloque de código reutilizable que realiza una tarea específica. Es como un mini-programa dentro de nuestro programa. Podemos crear nuestras propias funciones con la palabra clave <code>def</code>.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code># Definimos la función
+def saludar():
+    print(&quot;¡Hola!&quot;)
+    print(&quot;¡Bienvenido al curso de Python!&quot;)
+    print(&quot;¿Qué tal estás?&quot;)
+
+# Llamamos a la función para ejecutarla
+print(&quot;--- Inicio del programa ---&quot;)
+saludar()
+print(&quot;--- Hacemos otra cosa ---&quot;)
+saludar()
+print(&quot;--- Fin del programa ---&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="12" aria-label="Código Python editable"># Definimos la función
+def saludar():
+    print(&quot;¡Hola!&quot;)
+    print(&quot;¡Bienvenido al curso de Python!&quot;)
+    print(&quot;¿Qué tal estás?&quot;)
+
+# Llamamos a la función para ejecutarla
+print(&quot;--- Inicio del programa ---&quot;)
+saludar()
+print(&quot;--- Hacemos otra cosa ---&quot;)
+saludar()
+print(&quot;--- Fin del programa ---&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>Analicemos el código:</p>
+<ol>
+<li><code>def saludar():</code> es la <strong>definición</strong>. <code>def</code> indica que vamos a crear una función; <code>saludar</code> es su nombre y los paréntesis son obligatorios.</li>
+<li>El código indentado bajo <code>def</code> es el <strong>cuerpo</strong> de la función. Python lo guarda, pero todavía no lo ejecuta.</li>
+<li>Las líneas <code>saludar()</code> son las <strong>llamadas</strong> a la función: ahí pedimos a Python que ejecute el código guardado.</li>
+</ol>
+<p>Salida:</p>
+<pre><code class="language-text">--- Inicio del programa ---
+¡Hola!
+¡Bienvenido al curso de Python!
+¿Qué tal estás?
+--- Hacemos otra cosa ---
+¡Hola!
+¡Bienvenido al curso de Python!
+¿Qué tal estás?
+--- Fin del programa ---
+</code></pre>
+<p>La ventaja es que, si queremos cambiar el saludo, solo debemos modificarlo en un único lugar: su definición. Esta idea se conoce como principio <strong>DRY</strong> (<em>Don&#39;t Repeat Yourself</em>: «no te repitas»).</p>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Pasar información: parámetros y argumentos</h2>
+<p>La función <code>saludar()</code> siempre hace lo mismo. Para que pueda saludar a personas diferentes, usamos <strong>parámetros</strong>.</p>
+<p>Un parámetro es una variable especial que escribimos entre los paréntesis de la definición para que la función pueda recibir un valor desde fuera.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>def saludar_a(nombre):  # nombre es un parámetro
+    print(f&quot;¡Hola, {nombre}!&quot;)
+
+# Los valores que enviamos al llamar a la función son argumentos
+saludar_a(&quot;Ana&quot;)
+saludar_a(&quot;Marcos&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="6" aria-label="Código Python editable">def saludar_a(nombre):  # nombre es un parámetro
+    print(f&quot;¡Hola, {nombre}!&quot;)
+
+# Los valores que enviamos al llamar a la función son argumentos
+saludar_a(&quot;Ana&quot;)
+saludar_a(&quot;Marcos&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>Salida:</p>
+<pre><code class="language-text">¡Hola, Ana!
+¡Hola, Marcos!
+</code></pre>
+<p>Al ejecutar <code>saludar_a(&quot;Ana&quot;)</code>, Python asigna el argumento <code>&quot;Ana&quot;</code> al parámetro <code>nombre</code> y después ejecuta el cuerpo de la función.</p>
+
+<div class="box box--dato">
+<p class="box__title">Parámetro y argumento</p>
+<p>El <strong>parámetro</strong> es el nombre que aparece al definir la función (<code>nombre</code>). El <strong>argumento</strong> es el valor concreto que enviamos al llamarla (<code>&quot;Ana&quot;</code>).</p>
+
+</div>
+<p>Los parámetros solo existen dentro de la función mientras esta se está ejecutando. A esto se le llama <strong>ámbito local</strong>.</p>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Devolver información con <code>return</code></h2>
+<p>Las funciones no solo sirven para hacer acciones como mostrar texto: también pueden calcular y devolver un resultado. Por ejemplo, <code>len(&quot;hola&quot;)</code> devuelve el número <code>4</code>.</p>
+<p>Para devolver un valor usamos la palabra clave <code>return</code>.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>def sumar(a, b):
+    resultado = a + b
+    return resultado
+
+# Guardamos el valor devuelto en una variable
+total = sumar(5, 3)
+print(f&quot;El resultado de la suma es: {total}&quot;)
+
+# También podemos usarlo directamente en otra operación
+resultado_doble = sumar(10, 2) * 2
+print(f&quot;El doble del resultado es: {resultado_doble}&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="11" aria-label="Código Python editable">def sumar(a, b):
+    resultado = a + b
+    return resultado
+
+# Guardamos el valor devuelto en una variable
+total = sumar(5, 3)
+print(f&quot;El resultado de la suma es: {total}&quot;)
+
+# También podemos usarlo directamente en otra operación
+resultado_doble = sumar(10, 2) * 2
+print(f&quot;El doble del resultado es: {resultado_doble}&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>Salida:</p>
+<pre><code class="language-text">El resultado de la suma es: 8
+El doble del resultado es: 24
+</code></pre>
+<p>Al llegar a <code>return</code>, la función termina inmediatamente y entrega el valor indicado.</p>
+<h3>El valor especial <code>None</code></h3>
+<p>Si una función no tiene una sentencia <code>return</code>, Python devuelve el valor especial <code>None</code>, que representa la ausencia de valor.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>def funcion_sin_return():
+    print(&quot;Hago algo, pero no devuelvo nada.&quot;)
+
+resultado = funcion_sin_return()
+print(f&quot;El resultado es: {resultado}&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="5" aria-label="Código Python editable">def funcion_sin_return():
+    print(&quot;Hago algo, pero no devuelvo nada.&quot;)
+
+resultado = funcion_sin_return()
+print(f&quot;El resultado es: {resultado}&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>Salida:</p>
+<pre><code class="language-text">Hago algo, pero no devuelvo nada.
+El resultado es: None
+</code></pre>
+<p><code>print()</code> es un buen ejemplo: muestra información en pantalla, pero no devuelve un resultado útil.</p>
+
+</section>
+<section class="slide" data-materia="python">
+  <h2>Ámbito local y global</h2>
+<p>El <strong>ámbito</strong> (<em>scope</em>) determina dónde existe una variable y desde qué parte del programa se puede usar.</p>
+<ul>
+<li><strong>Ámbito global:</strong> las variables creadas fuera de cualquier función. Se pueden leer desde cualquier parte del programa, también desde las funciones.</li>
+<li><strong>Ámbito local:</strong> las variables creadas dentro de una función, incluidos sus parámetros. Solo existen durante la ejecución de esa función.</li>
+</ul>
+<p>Reglas importantes:</p>
+<ol>
+<li>El código global no puede usar una variable local.</li>
+<li>Una función sí puede leer una variable global.</li>
+<li>Una función no puede acceder a las variables locales de otra función.</li>
+<li>Puede haber variables con el mismo nombre en ámbitos diferentes: no se mezclan.</li>
+</ol>
+<h3>Las variables locales son privadas</h3>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>def mi_funcion():
+    variable_local = &quot;Soy de aquí dentro&quot;
+    print(variable_local)
+
+mi_funcion()
+# print(variable_local)  # Daría NameError: la variable ya no existe aquí
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="6" aria-label="Código Python editable">def mi_funcion():
+    variable_local = &quot;Soy de aquí dentro&quot;
+    print(variable_local)
+
+mi_funcion()
+# print(variable_local)  # Daría NameError: la variable ya no existe aquí
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Leer una variable global</h3>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>variable_global = &quot;Soy del ámbito global&quot;
+
+def otra_funcion():
+    print(f&quot;Desde dentro puedo ver: {variable_global}&quot;)
+
+otra_funcion()
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="6" aria-label="Código Python editable">variable_global = &quot;Soy del ámbito global&quot;
+
+def otra_funcion():
+    print(f&quot;Desde dentro puedo ver: {variable_global}&quot;)
+
+otra_funcion()
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>El mismo nombre en ámbitos distintos</h3>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>huevos = &quot;global&quot;
+
+def bacon():
+    huevos = &quot;local de bacon&quot;
+    print(f&quot;En bacon(), huevos es: {huevos}&quot;)
+
+def spam():
+    print(f&quot;En spam(), huevos es: {huevos}&quot;)
+
+bacon()
+spam()
+print(f&quot;En el ámbito global, huevos es: {huevos}&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="12" aria-label="Código Python editable">huevos = &quot;global&quot;
+
+def bacon():
+    huevos = &quot;local de bacon&quot;
+    print(f&quot;En bacon(), huevos es: {huevos}&quot;)
+
+def spam():
+    print(f&quot;En spam(), huevos es: {huevos}&quot;)
+
+bacon()
+spam()
+print(f&quot;En el ámbito global, huevos es: {huevos}&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>Salida:</p>
+<pre><code class="language-text">En bacon(), huevos es: local de bacon
+En spam(), huevos es: global
+En el ámbito global, huevos es: global
+</code></pre>
+<p>Al asignar un valor a <code>huevos</code> dentro de <code>bacon()</code>, Python crea una variable local nueva sin modificar la global. Como <code>spam()</code> no tiene una variable local llamada <code>huevos</code>, lee la global.</p>
+
+<div class="box">
+<p class="box__title">Buenas prácticas</p>
+<p>Evita modificar variables globales desde dentro de una función. Es preferible recibir los datos como parámetros y devolver los resultados con <code>return</code>: el código será más fácil de entender y depurar.</p>
+
+</div>
+<div class="box box--resumen">
+<p class="box__title">Resumen</p>
+<ul>
+<li>Se define una función con <code>def nombre():</code> y se ejecuta con <code>nombre()</code>.</li>
+<li>Los <strong>parámetros</strong> reciben los datos que enviamos como <strong>argumentos</strong>.</li>
+<li><code>return</code> devuelve un resultado; sin <code>return</code>, una función devuelve <code>None</code>.</li>
+<li>Las variables locales solo viven dentro de su función; las globales se crean fuera de ellas.</li>
+</ul>
+
+</div>
+</section>
+<section class="slide" data-materia="python">
+  <h2>Ejercicios prácticos</h2>
+<h3>1. Calculadora simple</h3>
+<ol>
+<li>Crea cuatro funciones: <code>sumar</code>, <code>restar</code>, <code>multiplicar</code> y <code>dividir</code>.</li>
+<li>Cada función debe aceptar dos números como parámetros y devolver el resultado.</li>
+<li>Pide dos números al usuario y usa las funciones para mostrar los cuatro resultados.</li>
+</ol>
+<p>También puedes modificar tu calculadora anterior para que cada operación se haga en una función diferente.</p>
+<h3>2. Validador de edad</h3>
+<ol>
+<li>Escribe una función llamada <code>es_mayor_de_edad</code> que acepte una edad.</li>
+<li>Debe devolver <code>True</code> si la edad es 18 o más, y <code>False</code> en caso contrario.</li>
+<li>Pide una edad al usuario.</li>
+<li>Llama a la función y comunica si puede pasar o no.</li>
+</ol>
+<h3>3. La secuencia de Collatz</h3>
+<p>Escribe una función <code>collatz(numero)</code> que haga lo siguiente:</p>
+<ul>
+<li>Si <code>numero</code> es par, imprime y devuelve <code>numero // 2</code>.</li>
+<li>Si es impar, imprime y devuelve <code>3 * numero + 1</code>.</li>
+</ul>
+<p>Después, pide al usuario un número entero y llama repetidamente a la función con el resultado anterior hasta que devuelva <code>1</code>.</p>
+<p><em>Pista: un número es par si <code>numero % 2 == 0</code>.</em></p>
+<p>Ejemplo de ejecución:</p>
+<pre><code class="language-text">Introduce un número: 3
+10
+5
+16
+8
+4
+2
+1
+</code></pre>
+<h3>4. Analizador de fortaleza de contraseñas</h3>
+<p>Crea un programa que evalúe una contraseña mediante funciones pequeñas y específicas.</p>
+<p>Una contraseña fuerte debe:</p>
+<ol>
+<li>Tener al menos 8 caracteres.</li>
+<li>Contener una letra mayúscula.</li>
+<li>Contener al menos un número.</li>
+</ol>
+<p>Instrucciones:</p>
+<ol>
+<li>Crea <code>verificar_longitud(password)</code>, que devuelva si tiene 8 caracteres o más.</li>
+<li>Crea <code>verificar_mayuscula(password)</code>, que recorra el texto y devuelva <code>True</code> si encuentra una mayúscula. El método <code>.isupper()</code> te ayudará.</li>
+<li>Crea <code>verificar_numero(password)</code>, que devuelva <code>True</code> si encuentra un dígito. Usa <code>.isdigit()</code>.</li>
+<li>Crea <code>analizar_fortaleza(password)</code>. Debe llamar a las tres funciones anteriores, mostrar las reglas que se cumplen y decidir si la contraseña es fuerte o débil.</li>
+<li>Pide una contraseña al usuario. Como extra, usa un <code>while</code> para probar distintas contraseñas hasta que escriba <code>salir</code>.</li>
+</ol>
+<p>Ejemplo de salida:</p>
+<pre><code class="language-text">Introduce una contraseña para analizar (o escribe &#39;salir&#39;): hola
+Analizando contraseña: &#39;hola&#39;
+-------------------------------------
+✗ Longitud mínima (8 caracteres): No cumple
+✗ Contiene mayúsculas: No cumple
+✗ Contiene números: No cumple
+-------------------------------------
+Resultado: Contraseña débil
+</code></pre>
+
+</section>
+
+
+      <footer class="page-footer">
+        <p><a href="../index.html">← Volver al índice</a> · Programación en Python · Material de aula</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- ======================= VISOR DE DIAPOSITIVAS ======================= -->
+  <div class="slideshow" id="slideshow" hidden>
+    <div class="slideshow__progress"><div class="slideshow__bar" id="slides-bar"></div></div>
+    <button class="slideshow__close" id="slides-close" title="Salir (Esc)">✕</button>
+    <div class="slideshow__stage" id="slides-stage"></div>
+    <div class="slideshow__controls">
+      <button class="slideshow__nav" id="slides-prev" title="Anterior (←)">←</button>
+      <span class="slideshow__dots" id="slides-dots" hidden></span>
+      <span class="slideshow__counter" id="slides-counter">1 / 1</span>
+      <button class="slideshow__nav" id="slides-next" title="Siguiente (→)">→</button>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

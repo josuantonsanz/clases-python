@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listas y bucles for · Programación en Python</title>
+  <meta name="description" content="Listas y bucles for — Programación en Python">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <!-- ======================= BARRA SUPERIOR ======================= -->
+  <header class="topbar">
+    <div class="topbar__title">
+      <button class="btn btn--ghost topbar__menu" id="btn-menu" aria-label="Abrir índice">☰</button>
+      <span class="topbar__brand">Programación en Python</span>
+    </div>
+    <div class="topbar__actions">
+      <a class="btn btn--outline" href="../index.html" title="Volver al índice general">⌂ <span class="btn__label">Índice</span></a>
+      <button class="btn btn--outline" id="btn-print" title="Imprimir o guardar como PDF (Ctrl+P)">
+        🖨️ <span class="btn__label">Imprimir / PDF</span>
+      </button>
+      <button class="btn btn--primary" id="btn-slides" title="Ver el contenido como diapositivas">
+        ▶ <span class="btn__label">Diapositivas</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- ======================= ÍNDICE LATERAL ======================= -->
+    <nav class="sidebar" id="sidebar" aria-label="Índice del capítulo">
+      <p class="sidebar__title">Índice del capítulo</p>
+      <ol class="toc" id="toc"><!-- se genera con JS --></ol>
+      <p class="sidebar__hint">Pulsa <kbd>Ctrl</kbd>+<kbd>P</kbd> para imprimir / guardar como PDF.</p>
+    </nav>
+
+    <!-- ======================= CONTENIDO ======================= -->
+    <main class="content" id="content">
+
+      <header class="cover" id="portada">
+  <p class="cover__kicker">Programación en Python · Capítulo 6</p>
+  <h1 class="cover__title">Listas y bucles for</h1>
+  <p class="cover__subtitle"><span class="tag tag--py">Python</span></p>
+  <div class="cover__meta"><span>Curso 2026 – 2027</span><span>Programación</span></div>
+</header>
+
+      <section class="slide" data-materia="python">
+  <h2>El bucle <code>for</code>: repetir un número de veces</h2>
+<p>Hasta ahora hemos visto el bucle <code>while</code>, que repite una tarea <em>mientras</em> se cumpla una condición. Ahora veremos el bucle <code>for</code>, que procesa cada elemento de una secuencia, uno por uno.</p>
+<p>La principal utilidad del bucle <code>for</code> es ejecutar un bloque de código un número predefinido de veces. Para ello, lo combinamos con la función <code>range()</code>.</p>
+<p>Su estructura tiene siempre estos elementos:</p>
+<ul>
+<li>La palabra clave <code>for</code>.</li>
+<li>Una <strong>variable de control</strong>, que toma un valor distinto en cada vuelta; por ejemplo, <code>i</code> de «índice» o <code>numero</code>.</li>
+<li>La palabra clave <code>in</code>.</li>
+<li>La secuencia que queremos recorrer, por ejemplo <code>range(5)</code>.</li>
+<li>Dos puntos (<code>:</code>) y un bloque de código indentado.</li>
+</ul>
+<p><strong>Ejemplo: una cuenta atrás</strong></p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>print(&quot;Preparando el despegue&quot;)
+
+# range(5, 0, -1) genera los números 5, 4, 3, 2 y 1
+for numero in range(5, 0, -1):
+    print(f&quot;{numero}...&quot;)
+
+print(&quot;¡Despegue!&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="7" aria-label="Código Python editable">print(&quot;Preparando el despegue&quot;)
+
+# range(5, 0, -1) genera los números 5, 4, 3, 2 y 1
+for numero in range(5, 0, -1):
+    print(f&quot;{numero}...&quot;)
+
+print(&quot;¡Despegue!&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>Salida:</p>
+<pre><code class="language-text">Preparando el despegue
+5...
+4...
+3...
+2...
+1...
+¡Despegue!
+</code></pre>
+<p>En cada vuelta, o <strong>iteración</strong>, la variable <code>numero</code> toma el siguiente valor que genera <code>range()</code>.</p>
+<h3>La función <code>range()</code></h3>
+<p><code>range()</code> es un generador de números muy versátil. Puede usarse de tres maneras:</p>
+<ol>
+<li><p><strong><code>range(fin)</code></strong>: genera números desde <code>0</code> hasta <code>fin - 1</code>.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code># Imprime los números del 0 al 3
+for i in range(4):
+    print(i)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="3" aria-label="Código Python editable"># Imprime los números del 0 al 3
+for i in range(4):
+    print(i)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+<li><p><strong><code>range(inicio, fin)</code></strong>: genera números desde <code>inicio</code> hasta <code>fin - 1</code>.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code># Cuenta del 1 al 20
+for numero in range(1, 21):
+    print(f&quot;¿Cómo se dice el número {numero}?&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="3" aria-label="Código Python editable"># Cuenta del 1 al 20
+for numero in range(1, 21):
+    print(f&quot;¿Cómo se dice el número {numero}?&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+<li><p><strong><code>range(inicio, fin, paso)</code></strong>: genera números desde <code>inicio</code> hasta <code>fin - 1</code>, saltando de <code>paso</code> en <code>paso</code>.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code># Muestra los números pares del 0 al 10
+for par in range(0, 11, 2):
+    print(par)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="3" aria-label="Código Python editable"># Muestra los números pares del 0 al 10
+for par in range(0, 11, 2):
+    print(par)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+</ol>
+
+<div class="box box--dato">
+<p class="box__title">El final no se incluye</p>
+<p>En los tres casos, el valor de <code>fin</code> <strong>no aparece</strong>. Por eso <code>range(4)</code> produce <code>0</code>, <code>1</code>, <code>2</code> y <code>3</code>.</p>
+
+</div>
+</section>
+<section class="slide" data-materia="python">
+  <h2>Listas: colecciones ordenadas</h2>
+<p>Imagina una estantería con baldas numeradas. En cada balda puedes guardar lo que quieras: un libro, una foto o una planta. Una <strong>lista</strong> en Python es una colección ordenada de elementos.</p>
+<p>A diferencia de las cadenas, que solo guardan caracteres, las listas pueden guardar números, texto, valores booleanos e incluso otras listas. Se definen con corchetes <code>[]</code> y sus elementos se separan por comas.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code># Una lista de la compra
+lista_compra = [&quot;Leche&quot;, &quot;Pan&quot;, &quot;Huevos&quot;, &quot;Manzanas&quot;]
+
+# Una lista de notas
+notas = [7.5, 9.0, 5.2, 10.0]
+
+# Una lista vacía, para llenarla después
+tareas_pendientes = []
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="8" aria-label="Código Python editable"># Una lista de la compra
+lista_compra = [&quot;Leche&quot;, &quot;Pan&quot;, &quot;Huevos&quot;, &quot;Manzanas&quot;]
+
+# Una lista de notas
+notas = [7.5, 9.0, 5.2, 10.0]
+
+# Una lista vacía, para llenarla después
+tareas_pendientes = []
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Acceder a los elementos: índices y <em>slicing</em></h3>
+<p>Igual que en las cadenas, accedemos a los elementos de una lista por su <strong>índice</strong>, que empieza en <code>0</code>.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>lista_compra = [&quot;Leche&quot;, &quot;Pan&quot;, &quot;Huevos&quot;, &quot;Manzanas&quot;]
+
+primer_producto = lista_compra[0]  # &quot;Leche&quot;
+tercer_producto = lista_compra[2]  # &quot;Huevos&quot;
+
+print(f&quot;No te olvides de comprar {primer_producto} y {tercer_producto}&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="6" aria-label="Código Python editable">lista_compra = [&quot;Leche&quot;, &quot;Pan&quot;, &quot;Huevos&quot;, &quot;Manzanas&quot;]
+
+primer_producto = lista_compra[0]  # &quot;Leche&quot;
+tercer_producto = lista_compra[2]  # &quot;Huevos&quot;
+
+print(f&quot;No te olvides de comprar {primer_producto} y {tercer_producto}&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>También funcionan los índices negativos (<code>-1</code> es el último, <code>-2</code> el penúltimo...) y el <em>slicing</em> (<code>[inicio:fin]</code>) para obtener sublistas, exactamente igual que con las cadenas.</p>
+<h3>Las listas son mutables</h3>
+<p>Esta es su gran diferencia respecto a las cadenas: podemos modificar, añadir o eliminar elementos de una lista en cualquier momento.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>lista_compra = [&quot;Leche&quot;, &quot;Pan&quot;, &quot;Huevos&quot;]
+print(f&quot;Lista original: {lista_compra}&quot;)
+
+# Modificar un elemento
+lista_compra[1] = &quot;Pan integral&quot;
+print(f&quot;Lista modificada: {lista_compra}&quot;)
+
+# Eliminar un elemento con del
+del lista_compra[2]
+print(f&quot;Lista tras eliminar: {lista_compra}&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="10" aria-label="Código Python editable">lista_compra = [&quot;Leche&quot;, &quot;Pan&quot;, &quot;Huevos&quot;]
+print(f&quot;Lista original: {lista_compra}&quot;)
+
+# Modificar un elemento
+lista_compra[1] = &quot;Pan integral&quot;
+print(f&quot;Lista modificada: {lista_compra}&quot;)
+
+# Eliminar un elemento con del
+del lista_compra[2]
+print(f&quot;Lista tras eliminar: {lista_compra}&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>Salida:</p>
+<pre><code class="language-text">Lista original: [&#39;Leche&#39;, &#39;Pan&#39;, &#39;Huevos&#39;]
+Lista modificada: [&#39;Leche&#39;, &#39;Pan integral&#39;, &#39;Huevos&#39;]
+Lista tras eliminar: [&#39;Leche&#39;, &#39;Pan integral&#39;]
+</code></pre>
+<h3>Métodos útiles de las listas</h3>
+<p>Las listas incluyen métodos para manipularlas:</p>
+<ul>
+<li><p><strong><code>.append(elemento)</code></strong> añade un elemento al final.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>tareas = [&quot;Lavar los platos&quot;]
+tareas.append(&quot;Sacar al perro&quot;)
+print(tareas)  # [&#39;Lavar los platos&#39;, &#39;Sacar al perro&#39;]
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="3" aria-label="Código Python editable">tareas = [&quot;Lavar los platos&quot;]
+tareas.append(&quot;Sacar al perro&quot;)
+print(tareas)  # [&#39;Lavar los platos&#39;, &#39;Sacar al perro&#39;]
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+<li><p><strong><code>.pop(indice)</code></strong> elimina y devuelve el elemento de un índice. Sin índice, elimina el último.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>numeros = [10, 20, 30, 40]
+ultimo_numero = numeros.pop()
+print(f&quot;He quitado el {ultimo_numero}&quot;)
+print(numeros)  # [10, 20, 30]
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="4" aria-label="Código Python editable">numeros = [10, 20, 30, 40]
+ultimo_numero = numeros.pop()
+print(f&quot;He quitado el {ultimo_numero}&quot;)
+print(numeros)  # [10, 20, 30]
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+<li><p><strong><code>.sort()</code></strong> ordena la lista de forma permanente.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>invitados = [&quot;Carla&quot;, &quot;Ana&quot;, &quot;David&quot;, &quot;Bruno&quot;]
+invitados.sort()
+print(invitados)  # [&#39;Ana&#39;, &#39;Bruno&#39;, &#39;Carla&#39;, &#39;David&#39;]
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="3" aria-label="Código Python editable">invitados = [&quot;Carla&quot;, &quot;Ana&quot;, &quot;David&quot;, &quot;Bruno&quot;]
+invitados.sort()
+print(invitados)  # [&#39;Ana&#39;, &#39;Bruno&#39;, &#39;Carla&#39;, &#39;David&#39;]
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+<li><p><strong><code>.reverse()</code></strong> invierte permanentemente el orden de sus elementos.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>numeros = [1, 2, 3, 4]
+numeros.reverse()
+print(numeros)  # [4, 3, 2, 1]
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="3" aria-label="Código Python editable">numeros = [1, 2, 3, 4]
+numeros.reverse()
+print(numeros)  # [4, 3, 2, 1]
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+<li><p><strong><code>.copy()</code></strong> crea una copia independiente de una lista.</p>
+</li>
+</ul>
+<h3>Cuidado al copiar listas</h3>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>lista_original = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+lista_mal_copiada = lista_original  # Esto NO crea una copia
+
+lista_mal_copiada[0] = &quot;Z&quot;
+
+print(f&quot;Lista &#39;copiada&#39;: {lista_mal_copiada}&quot;)
+print(f&quot;Lista original: {lista_original}&quot;)  # También ha cambiado
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="7" aria-label="Código Python editable">lista_original = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+lista_mal_copiada = lista_original  # Esto NO crea una copia
+
+lista_mal_copiada[0] = &quot;Z&quot;
+
+print(f&quot;Lista &#39;copiada&#39;: {lista_mal_copiada}&quot;)
+print(f&quot;Lista original: {lista_original}&quot;)  # También ha cambiado
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>Al escribir <code>lista_b = lista_a</code> no creamos otra lista: damos otra etiqueta a la misma lista en memoria. Cualquier cambio realizado con una de las etiquetas afectará a la otra.</p>
+<p>Para crear una copia de verdad, usa <code>.copy()</code> o el <em>slicing</em> <code>[:]</code>:</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>lista_original = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+lista_bien_copiada = lista_original.copy()  # También valdría lista_original[:]
+
+lista_bien_copiada[0] = &quot;Z&quot;
+
+print(f&quot;Lista copiada: {lista_bien_copiada}&quot;)    # [&#39;Z&#39;, &#39;b&#39;, &#39;c&#39;]
+print(f&quot;Lista original: {lista_original}&quot;)      # [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="7" aria-label="Código Python editable">lista_original = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+lista_bien_copiada = lista_original.copy()  # También valdría lista_original[:]
+
+lista_bien_copiada[0] = &quot;Z&quot;
+
+print(f&quot;Lista copiada: {lista_bien_copiada}&quot;)    # [&#39;Z&#39;, &#39;b&#39;, &#39;c&#39;]
+print(f&quot;Lista original: {lista_original}&quot;)      # [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+<div class="box">
+<p class="box__title">Nota</p>
+<p>Si necesitas una versión modificada de una lista pero quieres conservar la original, crea siempre una copia independiente.</p>
+
+</div>
+</section>
+<section class="slide" data-materia="python">
+  <h2>Bucles <code>for</code> y listas</h2>
+<p>Un bucle <code>for</code> permite visitar y operar con cada elemento de una lista.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>tareas = [&quot;Hacer la cama&quot;, &quot;Estudiar Python&quot;, &quot;Pasear al perro&quot;]
+
+print(&quot;Mis tareas para hoy:&quot;)
+for tarea in tareas:
+    print(f&quot;- {tarea}&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="5" aria-label="Código Python editable">tareas = [&quot;Hacer la cama&quot;, &quot;Estudiar Python&quot;, &quot;Pasear al perro&quot;]
+
+print(&quot;Mis tareas para hoy:&quot;)
+for tarea in tareas:
+    print(f&quot;- {tarea}&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<p>Se lee así: «para cada <code>tarea</code> de la lista <code>tareas</code>, muestra la <code>tarea</code>».</p>
+<h3>Tres formas de recorrer una lista</h3>
+<ol>
+<li><p><strong>Por elemento</strong>, la forma más común y legible. Úsala cuando solo importe el valor.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>alumnos = [&quot;Ana&quot;, &quot;Luis&quot;, &quot;Carla&quot;, &quot;David&quot;]
+for alumno in alumnos:
+    print(f&quot;Bienvenido, {alumno}&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="3" aria-label="Código Python editable">alumnos = [&quot;Ana&quot;, &quot;Luis&quot;, &quot;Carla&quot;, &quot;David&quot;]
+for alumno in alumnos:
+    print(f&quot;Bienvenido, {alumno}&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+<li><p><strong>Por índice</strong>, cuando también necesitas conocer la posición.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>alumnos = [&quot;Ana&quot;, &quot;Luis&quot;, &quot;Carla&quot;, &quot;David&quot;]
+print(&quot;Clasificación de la competición:&quot;)
+
+for i in range(len(alumnos)):
+    print(f&quot;{i + 1}º puesto: {alumnos[i]}&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="5" aria-label="Código Python editable">alumnos = [&quot;Ana&quot;, &quot;Luis&quot;, &quot;Carla&quot;, &quot;David&quot;]
+print(&quot;Clasificación de la competición:&quot;)
+
+for i in range(len(alumnos)):
+    print(f&quot;{i + 1}º puesto: {alumnos[i]}&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+<li><p><strong>Con <code>enumerate()</code></strong>, cuando necesitas a la vez el índice y el elemento. Es la forma preferida en Python para este caso.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>alumnos = [&quot;Ana&quot;, &quot;Luis&quot;, &quot;Carla&quot;, &quot;David&quot;]
+print(&quot;Clasificación:&quot;)
+
+for indice, alumno in enumerate(alumnos):
+    print(f&quot;{indice + 1}º puesto: {alumno}&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="5" aria-label="Código Python editable">alumnos = [&quot;Ana&quot;, &quot;Luis&quot;, &quot;Carla&quot;, &quot;David&quot;]
+print(&quot;Clasificación:&quot;)
+
+for indice, alumno in enumerate(alumnos):
+    print(f&quot;{indice + 1}º puesto: {alumno}&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+</li>
+</ol>
+<h3>Comprobar si un elemento está en la lista</h3>
+<p>Como con las cadenas, <code>in</code> y <code>not in</code> sirven para comprobar si un elemento pertenece a una lista.</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>ingredientes_receta = [&quot;harina&quot;, &quot;azúcar&quot;, &quot;huevos&quot;, &quot;chocolate&quot;]
+ingrediente_a_buscar = &quot;huevos&quot;
+
+if ingrediente_a_buscar in ingredientes_receta:
+    print(f&quot;Perfecto. Tenemos {ingrediente_a_buscar} para la receta.&quot;)
+else:
+    print(f&quot;Oh, no. Nos falta {ingrediente_a_buscar}.&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="7" aria-label="Código Python editable">ingredientes_receta = [&quot;harina&quot;, &quot;azúcar&quot;, &quot;huevos&quot;, &quot;chocolate&quot;]
+ingrediente_a_buscar = &quot;huevos&quot;
+
+if ingrediente_a_buscar in ingredientes_receta:
+    print(f&quot;Perfecto. Tenemos {ingrediente_a_buscar} para la receta.&quot;)
+else:
+    print(f&quot;Oh, no. Nos falta {ingrediente_a_buscar}.&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>Listas vacías y valores booleanos</h3>
+<p>Una lista vacía (<code>[]</code>) se comporta como <code>False</code> en una condición; una lista con elementos se comporta como <code>True</code>. Esto permite escribir comprobaciones directas:</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>mi_lista = []
+
+# Forma larga
+if len(mi_lista) == 0:
+    print(&quot;La lista está vacía.&quot;)
+
+# Forma más habitual en Python
+if not mi_lista:
+    print(&quot;La lista está vacía.&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="9" aria-label="Código Python editable">mi_lista = []
+
+# Forma larga
+if len(mi_lista) == 0:
+    print(&quot;La lista está vacía.&quot;)
+
+# Forma más habitual en Python
+if not mi_lista:
+    print(&quot;La lista está vacía.&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+
+<div class="box box--resumen">
+<p class="box__title">Resumen</p>
+<ul>
+<li><code>for</code> recorre los elementos de una secuencia; con <code>range()</code> permite repetir acciones un número concreto de veces.</li>
+<li>Las listas son colecciones ordenadas, indexadas y <strong>mutables</strong>.</li>
+<li>Usa <code>.append()</code> para añadir, <code>.pop()</code> o <code>del</code> para quitar y <code>.copy()</code> para duplicar una lista de forma independiente.</li>
+<li>Para recorrer una lista, normalmente basta con <code>for elemento in lista</code>; usa <code>enumerate()</code> si además necesitas la posición.</li>
+</ul>
+
+</div>
+</section>
+<section class="slide" data-materia="python">
+  <h2>Ejercicios prácticos</h2>
+<h3>1. Lista de la compra interactiva</h3>
+<p>Crea un programa que permita al usuario construir una lista de la compra.</p>
+<ol>
+<li>Usa un bucle <code>while</code> para pedir productos uno por uno.</li>
+<li>Añade cada producto a una lista con <code>.append()</code>.</li>
+<li>Si el usuario escribe <code>FIN</code>, termina el bucle.</li>
+<li>Al final, muestra la cantidad de productos y la lista ordenada alfabéticamente.</li>
+</ol>
+<p>Ejemplo de ejecución:</p>
+<pre><code class="language-text">Introduce un producto (o &#39;FIN&#39; para terminar): Leche
+Introduce un producto (o &#39;FIN&#39; para terminar): Pan
+Introduce un producto (o &#39;FIN&#39; para terminar): Manzanas
+Introduce un producto (o &#39;FIN&#39; para terminar): FIN
+
+--- Tu lista de la compra ---
+Total de productos: 3
+- Manzanas
+- Leche
+- Pan
+</code></pre>
+<h3>2. Análisis de notas de clase</h3>
+<p>Escribe un programa que analice una lista como esta:</p>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>notas = [4.5, 8.0, 7.5, 9.0, 3.2, 6.5, 5.0, 10.0, 2.5]
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="2" aria-label="Código Python editable">notas = [4.5, 8.0, 7.5, 9.0, 3.2, 6.5, 5.0, 10.0, 2.5]
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<ol>
+<li>Recorre la lista con un <code>for</code>.</li>
+<li>Calcula el número de aprobados (<code>nota &gt;= 5.0</code>), el de suspensos y la suma de todas las notas.</li>
+<li>Calcula la nota media.</li>
+<li>Muestra un resumen y formatea la media con dos decimales.</li>
+</ol>
+<h3>3. El sorteo</h3>
+<p>Crea un programa que simule un sorteo entre participantes.</p>
+<ol>
+<li>Pide nombres al usuario y guárdalos en una lista hasta que escriba <code>YA</code>.</li>
+<li>Importa el módulo <code>random</code>.</li>
+<li>Elige un ganador con <code>random.choice(participantes)</code> y muéstralo.</li>
+<li><strong>Extra:</strong> elimina al ganador y realiza un segundo sorteo entre las personas restantes.</li>
+</ol>
+<div class="runner">
+  <div class="runner__bar">
+    <span class="runner__label">🐍 Python</span>
+    <div class="runner__acciones">
+      <button type="button" class="runner__btn runner__btn--reset" title="Volver al código original">↺ Restaurar</button>
+      <button type="button" class="runner__btn runner__btn--run" title="Ejecutar (Ctrl + Enter)">▶ Ejecutar</button>
+    </div>
+  </div>
+  <div class="runner__editor">
+    <pre class="runner__highlight" aria-hidden="true"><code>import random
+
+participantes = [&quot;Ana&quot;, &quot;Juan&quot;, &quot;Marta&quot;]
+ganador = random.choice(participantes)
+print(f&quot;Y el ganador es... {ganador}!&quot;)
+</code></pre>
+    <textarea class="runner__code" spellcheck="false" rows="5" aria-label="Código Python editable">import random
+
+participantes = [&quot;Ana&quot;, &quot;Juan&quot;, &quot;Marta&quot;]
+ganador = random.choice(participantes)
+print(f&quot;Y el ganador es... {ganador}!&quot;)
+</textarea>
+  </div>
+  <pre class="runner__output" hidden></pre>
+</div>
+<h3>4. Inversor de listas</h3>
+<p>Crea un programa que invierta una lista <strong>sin usar</strong> <code>.reverse()</code>.</p>
+<ol>
+<li>Define una lista inicial, por ejemplo <code>mi_lista = [1, 2, 3, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</code>.</li>
+<li>Crea una lista vacía llamada <code>lista_invertida</code>.</li>
+<li>Recorre la lista original desde el final hacia el principio con un <code>for</code>, <code>range()</code> y un paso negativo.</li>
+<li>En cada vuelta añade el elemento actual a <code>lista_invertida</code>.</li>
+<li>Muestra la lista original y la lista invertida.</li>
+</ol>
+
+</section>
+
+
+      <footer class="page-footer">
+        <p><a href="../index.html">← Volver al índice</a> · Programación en Python · Material de aula</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- ======================= VISOR DE DIAPOSITIVAS ======================= -->
+  <div class="slideshow" id="slideshow" hidden>
+    <div class="slideshow__progress"><div class="slideshow__bar" id="slides-bar"></div></div>
+    <button class="slideshow__close" id="slides-close" title="Salir (Esc)">✕</button>
+    <div class="slideshow__stage" id="slides-stage"></div>
+    <div class="slideshow__controls">
+      <button class="slideshow__nav" id="slides-prev" title="Anterior (←)">←</button>
+      <span class="slideshow__dots" id="slides-dots" hidden></span>
+      <span class="slideshow__counter" id="slides-counter">1 / 1</span>
+      <button class="slideshow__nav" id="slides-next" title="Siguiente (→)">→</button>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>
